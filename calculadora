@@ -1,0 +1,43 @@
+/*
+Criar uma calculadora que resolva as 4 operações matemáticas básicas
+ */
+package calculadora;
+
+import java.util.Scanner;
+
+/*
+ * @author lohan.ypyugue
+ */
+public class Calculadora {
+
+    public static void main(String[] args) {
+        Scanner leitor = new Scanner(System.in);
+        System.out.print("Digite qual a operação será realizada (ADICAO|SUBTRACAO|MULTIPLICACAO|DIVISAO): " );
+        String operacao = leitor.nextLine().toUpperCase();
+        System.out.print("Informe o primeiro número a ser calculado: ");
+        float num1 = leitor.nextFloat();
+        System.out.print("Informe o segundo número a ser calculado: ");
+        float num2 = leitor.nextFloat();
+        
+        float resultado;
+        
+              
+        if (operacao.equals("ADICAO")){
+            resultado = num1 + num2;
+            System.out.println(num1 + " + " + num2 + " = " + resultado);
+        }
+        if (operacao.equals("SUBTRACAO")){
+            resultado = num1 - num2;
+            System.out.println(num1 + " - " + num2 + " = " + resultado);
+        }
+        if (operacao.equals("MULTIPLICACAO")){
+            resultado = num1 * num2;
+            System.out.println(num1 + " * " + num2 + " = " + resultado);
+        }
+        if (operacao.equals("DIVISAO")){
+            resultado = num1 / num2;
+            System.out.println(num1 + " / " + num2 + " = " + resultado);
+        }
+    }
+    
+}
