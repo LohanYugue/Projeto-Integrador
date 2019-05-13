@@ -13,10 +13,6 @@ static Scanner leitor = new Scanner(System.in);
     static char opcao;
     public static void main(String[] args) {
         
-        menu();
-    }
-    
-    public static void menu() {
         System.out.println(" ___                   _               _                                ");
         System.out.println("| __|  ___  __   ___  | |  __ _     __| |  ___     __   __ _   ___   ___");
         System.out.println("| _|  (_-< / _| / _ \\ | | / _` |   / _` | / _ \\   / _| / _` | / _ \\ (_-<");
@@ -51,6 +47,7 @@ static Scanner leitor = new Scanner(System.in);
                 break;
         }
     }
+    
     
     public static void start() {
         System.out.print(" Bem vindo ao jogo RPG “Escola do Caos”,\n antes de mais nada, "
