@@ -13,6 +13,7 @@ static Scanner leitor = new Scanner(System.in);
     static char opcao;
     public static void main(String[] args) {
         
+        do{
         System.out.println(" ___                   _               _                                ");
         System.out.println("| __|  ___  __   ___  | |  __ _     __| |  ___     __   __ _   ___   ___");
         System.out.println("| _|  (_-< / _| / _ \\ | | / _` |   / _` | / _ \\   / _| / _` | / _ \\ (_-<");
@@ -27,13 +28,8 @@ static Scanner leitor = new Scanner(System.in);
         System.out.println("***********");
         System.out.println("\n");
         System.out.print("Digite a opção desejada: ");
-        char inicio = leitor.nextLine().toLowerCase().charAt(0);
-        while ((inicio != 'a') && (inicio != 'b')) {
-            System.out.println("a)Jogar");
-            System.out.println("b)Sair");
-            inicio = leitor.nextLine().toLowerCase().charAt(0);
-        }
-        switch (inicio) {
+        opcao = leitor.nextLine().toLowerCase().charAt(0);
+        switch (opcao) {
             case 'a': start();
                 break;
             case 'b':
@@ -43,9 +39,12 @@ static Scanner leitor = new Scanner(System.in);
             case 'd':
                 break;
             case 'e':
-                System.out.println("voce saiu");
+                System.out.println("Você Saiu!");
                 break;
+            default:
+                System.out.println("Opção inválida!");
         }
+        }while(opcao!='e');
     }
     
     
@@ -94,24 +93,360 @@ static Scanner leitor = new Scanner(System.in);
                     escolha = leitor.nextLine().toLowerCase();
                 }
                 if (escolha.equals("esquerda")){
-                    System.out.print("Você segue em direção ao corredor da esquerda e há duas salas com a descrição.\n"
-                            + "ConceitosDeComputacao\n"
-                            + "Algoritmos\n"
-                            + "Qual sala você deseja entrar? ");
-                    String escolha2 = leitor.nextLine().toLowerCase();
-                    while(!escolha2.equals("conceitosdecomputacao")&&!escolha2.equals("algoritmos")){
-                    System.out.print("Você possui somente duas opções, ir para ConceitosDeComputacao ou para Algoritmos.\n Digite qual sala você deseja entrar: ");
-                    escolha2 = leitor.nextLine().toLowerCase();
-                    }
-                    
-                    if (escolha2.equals("conceitosdecomputacao")){
-                        salaCC();
-                    }
+                    char escolha2;
+                    do{
+                       System.out.print("Você segue em direção ao corredor da esquerda e há duas salas com a descrição.\n"
+                       + "(a) ConceitosDeComputacao\n"
+                       + "(b) Algoritmos\n"
+                       + "(c) Voltar para o corredor da direita\n"
+                       + "Onde você deseja ir? ");
+                        escolha2 = leitor.nextLine().toLowerCase().charAt(0);
+                            switch (escolha2){
+                                case 'a': salaAlgoritmos();
+                                    break;
+                                case 'b': salaAlgoritmos();
+                                    break;
+                                case 'c': System.out.println("Saiu");
+                                    break;
+                                default: System.out.print("Você possui somente duas opções, ir para ConceitosDeComputacao ou para Algoritmos.\n Digite qual sala você deseja entrar: ");
+                                escolha2 = leitor.nextLine().toLowerCase().charAt(0);
+                            }
+                    }while(escolha2!=('c'));    
                 }
+                        
         
     }
     
-    public static void salaCC() {
+    
+    
+    public static void salaConceitosComputacao(){
+        
+        //Questão 1   
+        do{
+            System.out.println ("*******Questão 1*******");
+            System.out.println ("O resultado da multiplicação dos números decimais 3 e 4  pode ser representado em hexadecimal pela letra:");
+            System.out.println("(a)B\n(b)F\n(c)C\n(d)A");
+            System.out.print("Escolha a alternativa correta: ");
+            opcao = leitor.nextLine().toLowerCase().charAt(0);
+        
+            while ((opcao!='a') && (opcao!='b') && (opcao!='c') && (opcao!='d')){
+                System.out.println("Resposta inválida, favor informar novamente a resposta");
+                opcao = leitor.nextLine().toLowerCase().charAt(0); 
+            }
+            if (opcao=='c'){
+                acertou();
+            }
+            else if ((opcao=='b') || (opcao=='a') || (opcao=='d')){
+                errou();
+            }
+        }while(opcao!='c'&&soma!=0);
+    
+    
+        //Questão 2
+        do{
+            System.out.println ("*******Questão 2*******");
+            System.out.println ("A função “NÃO E” também pode ser escrita da seguinte forma:");
+            System.out.println("(a)AND\n(b)NOR\n(c)OR\n(d)NAND");
+            System.out.print("Escolha a alternativa correta: ");
+            opcao = leitor.nextLine().toLowerCase().charAt(0);
+        
+            while ((opcao!='a') && (opcao!='b') && (opcao!='c') && (opcao!='d')){
+                System.out.println("Resposta inválida, favor informar novamente a resposta");
+                opcao = leitor.nextLine().toLowerCase().charAt(0); 
+            }
+            if (opcao=='d'){
+                acertou();
+            }
+            else if ((opcao=='b') || (opcao=='c') || (opcao=='a')){
+                errou();
+            }
+        }while(opcao!='d');
+    
+    
+        //Questão 3
+        do{
+            System.out.println ("*******Questão 3*******");
+            System.out.println ("Qual símbolo representa a função AND/E ?");
+            System.out.println("(a)+\n(b)-\n(c)*\n(d)/");
+            System.out.print("Escolha a alternativa correta: ");
+            opcao = leitor.nextLine().toLowerCase().charAt(0);
+        
+            while ((opcao!='a') && (opcao!='b') && (opcao!='c') && (opcao!='d')){
+                System.out.println("Resposta inválida, favor informar novamente a resposta");
+                opcao = leitor.nextLine().toLowerCase().charAt(0); 
+            }
+            if (opcao=='c'){
+                acertou();
+            }
+            else if ((opcao=='b') || (opcao=='d') || (opcao=='a')){
+                errou();
+            }
+        }while(opcao!='c');
+    
+    
+        //Questão 4
+        do{
+            System.out.println ("*******Questão 4*******");
+            System.out.println ("Quanto vale em decimal o número binário 100000100?");
+            System.out.println("(a)254\n(b)260\n(c)256\n(d)512");
+            System.out.print("Escolha a alternativa correta: ");
+            opcao = leitor.nextLine().toLowerCase().charAt(0);
+        
+            while ((opcao!='a') && (opcao!='b') && (opcao!='c') && (opcao!='d')){
+                System.out.println("Resposta inválida, favor informar novamente a resposta");
+                opcao = leitor.nextLine().toLowerCase().charAt(0); 
+            }
+            if (opcao=='b'){
+                acertou();
+            }
+            else if ((opcao=='d') || (opcao=='c') || (opcao=='a')){
+                errou();
+            }
+        }while(opcao!='b');
+    
+    
+        //Questão 5
+        do{
+            System.out.println ("*******Questão 5*******");
+            System.out.println ("Qual símbolo representa a função OR/OU ?");
+            System.out.println("(a)+\n(b)*\n(c)-\n(d)/");
+            System.out.print("Escolha a alternativa correta: ");
+            opcao = leitor.nextLine().toLowerCase().charAt(0);
+        
+            while ((opcao!='a') && (opcao!='b') && (opcao!='c') && (opcao!='d')){
+                System.out.println("Resposta inválida, favor informar novamente a resposta");
+                opcao = leitor.nextLine().toLowerCase().charAt(0); 
+            }
+            if (opcao=='a'){
+                acertou();
+                System.out.println("Parabéns, você completou todos os desafios desta sala.");
+            }
+            else if ((opcao=='b') || (opcao=='c') || (opcao=='d')){
+                errou();
+            }
+        }while(opcao!='a');
+        
+    }
+    
+    public static void salaAlgoritmos(){
+        
+        //Questão 1   
+        do{
+            System.out.println ("*******Questão 1*******");
+            System.out.println ("O resultado da multiplicação dos números decimais 3 e 4  pode ser representado em hexadecimal pela letra:");
+            System.out.println("(a)B\n(b)F\n(c)C\n(d)A");
+            System.out.print("Escolha a alternativa correta: ");
+            opcao = leitor.nextLine().toLowerCase().charAt(0);
+        
+            while ((opcao!='a') && (opcao!='b') && (opcao!='c') && (opcao!='d')){
+                System.out.println("Resposta inválida, favor informar novamente a resposta");
+                opcao = leitor.nextLine().toLowerCase().charAt(0); 
+            }
+            if (opcao=='c'){
+                acertou();
+            }
+            else if ((opcao=='b') || (opcao=='a') || (opcao=='d')){
+                errou();
+            }
+        }while(opcao!='c'&&soma!=0);
+    
+    
+        //Questão 2
+        do{
+            System.out.println ("*******Questão 2*******");
+            System.out.println ("A função “NÃO E” também pode ser escrita da seguinte forma:");
+            System.out.println("(a)AND\n(b)NOR\n(c)OR\n(d)NAND");
+            System.out.print("Escolha a alternativa correta: ");
+            opcao = leitor.nextLine().toLowerCase().charAt(0);
+        
+            while ((opcao!='a') && (opcao!='b') && (opcao!='c') && (opcao!='d')){
+                System.out.println("Resposta inválida, favor informar novamente a resposta");
+                opcao = leitor.nextLine().toLowerCase().charAt(0); 
+            }
+            if (opcao=='d'){
+                acertou();
+            }
+            else if ((opcao=='b') || (opcao=='c') || (opcao=='a')){
+                errou();
+            }
+        }while(opcao!='d');
+    
+    
+        //Questão 3
+        do{
+            System.out.println ("*******Questão 3*******");
+            System.out.println ("Qual símbolo representa a função AND/E ?");
+            System.out.println("(a)+\n(b)-\n(c)*\n(d)/");
+            System.out.print("Escolha a alternativa correta: ");
+            opcao = leitor.nextLine().toLowerCase().charAt(0);
+        
+            while ((opcao!='a') && (opcao!='b') && (opcao!='c') && (opcao!='d')){
+                System.out.println("Resposta inválida, favor informar novamente a resposta");
+                opcao = leitor.nextLine().toLowerCase().charAt(0); 
+            }
+            if (opcao=='c'){
+                acertou();
+            }
+            else if ((opcao=='b') || (opcao=='d') || (opcao=='a')){
+                errou();
+            }
+        }while(opcao!='c');
+    
+    
+        //Questão 4
+        do{
+            System.out.println ("*******Questão 4*******");
+            System.out.println ("Quanto vale em decimal o número binário 100000100?");
+            System.out.println("(a)254\n(b)260\n(c)256\n(d)512");
+            System.out.print("Escolha a alternativa correta: ");
+            opcao = leitor.nextLine().toLowerCase().charAt(0);
+        
+            while ((opcao!='a') && (opcao!='b') && (opcao!='c') && (opcao!='d')){
+                System.out.println("Resposta inválida, favor informar novamente a resposta");
+                opcao = leitor.nextLine().toLowerCase().charAt(0); 
+            }
+            if (opcao=='b'){
+                acertou();
+            }
+            else if ((opcao=='d') || (opcao=='c') || (opcao=='a')){
+                errou();
+            }
+        }while(opcao!='b');
+    
+    
+        //Questão 5
+        do{
+            System.out.println ("*******Questão 5*******");
+            System.out.println ("Qual símbolo representa a função OR/OU ?");
+            System.out.println("(a)+\n(b)*\n(c)-\n(d)/");
+            System.out.print("Escolha a alternativa correta: ");
+            opcao = leitor.nextLine().toLowerCase().charAt(0);
+        
+            while ((opcao!='a') && (opcao!='b') && (opcao!='c') && (opcao!='d')){
+                System.out.println("Resposta inválida, favor informar novamente a resposta");
+                opcao = leitor.nextLine().toLowerCase().charAt(0); 
+            }
+            if (opcao=='a'){
+                acertou();
+                System.out.println("Parabéns, você completou todos os desafios desta sala.");
+            }
+            else if ((opcao=='b') || (opcao=='c') || (opcao=='d')){
+                errou();
+            }
+        }while(opcao!='a');
+        
+    }
+    
+    public static void salaFundamentos(){
+        
+        //Questão 1   
+        do{
+            System.out.println ("*******Questão 1*******");
+            System.out.println ("O resultado da multiplicação dos números decimais 3 e 4  pode ser representado em hexadecimal pela letra:");
+            System.out.println("(a)B\n(b)F\n(c)C\n(d)A");
+            System.out.print("Escolha a alternativa correta: ");
+            opcao = leitor.nextLine().toLowerCase().charAt(0);
+        
+            while ((opcao!='a') && (opcao!='b') && (opcao!='c') && (opcao!='d')){
+                System.out.println("Resposta inválida, favor informar novamente a resposta");
+                opcao = leitor.nextLine().toLowerCase().charAt(0); 
+            }
+            if (opcao=='c'){
+                acertou();
+            }
+            else if ((opcao=='b') || (opcao=='a') || (opcao=='d')){
+                errou();
+            }
+        }while(opcao!='c'&&soma!=0);
+    
+    
+        //Questão 2
+        do{
+            System.out.println ("*******Questão 2*******");
+            System.out.println ("A função “NÃO E” também pode ser escrita da seguinte forma:");
+            System.out.println("(a)AND\n(b)NOR\n(c)OR\n(d)NAND");
+            System.out.print("Escolha a alternativa correta: ");
+            opcao = leitor.nextLine().toLowerCase().charAt(0);
+        
+            while ((opcao!='a') && (opcao!='b') && (opcao!='c') && (opcao!='d')){
+                System.out.println("Resposta inválida, favor informar novamente a resposta");
+                opcao = leitor.nextLine().toLowerCase().charAt(0); 
+            }
+            if (opcao=='d'){
+                acertou();
+            }
+            else if ((opcao=='b') || (opcao=='c') || (opcao=='a')){
+                errou();
+            }
+        }while(opcao!='d');
+    
+    
+        //Questão 3
+        do{
+            System.out.println ("*******Questão 3*******");
+            System.out.println ("Qual símbolo representa a função AND/E ?");
+            System.out.println("(a)+\n(b)-\n(c)*\n(d)/");
+            System.out.print("Escolha a alternativa correta: ");
+            opcao = leitor.nextLine().toLowerCase().charAt(0);
+        
+            while ((opcao!='a') && (opcao!='b') && (opcao!='c') && (opcao!='d')){
+                System.out.println("Resposta inválida, favor informar novamente a resposta");
+                opcao = leitor.nextLine().toLowerCase().charAt(0); 
+            }
+            if (opcao=='c'){
+                acertou();
+            }
+            else if ((opcao=='b') || (opcao=='d') || (opcao=='a')){
+                errou();
+            }
+        }while(opcao!='c');
+    
+    
+        //Questão 4
+        do{
+            System.out.println ("*******Questão 4*******");
+            System.out.println ("Quanto vale em decimal o número binário 100000100?");
+            System.out.println("(a)254\n(b)260\n(c)256\n(d)512");
+            System.out.print("Escolha a alternativa correta: ");
+            opcao = leitor.nextLine().toLowerCase().charAt(0);
+        
+            while ((opcao!='a') && (opcao!='b') && (opcao!='c') && (opcao!='d')){
+                System.out.println("Resposta inválida, favor informar novamente a resposta");
+                opcao = leitor.nextLine().toLowerCase().charAt(0); 
+            }
+            if (opcao=='b'){
+                acertou();
+            }
+            else if ((opcao=='d') || (opcao=='c') || (opcao=='a')){
+                errou();
+            }
+        }while(opcao!='b');
+    
+    
+        //Questão 5
+        do{
+            System.out.println ("*******Questão 5*******");
+            System.out.println ("Qual símbolo representa a função OR/OU ?");
+            System.out.println("(a)+\n(b)*\n(c)-\n(d)/");
+            System.out.print("Escolha a alternativa correta: ");
+            opcao = leitor.nextLine().toLowerCase().charAt(0);
+        
+            while ((opcao!='a') && (opcao!='b') && (opcao!='c') && (opcao!='d')){
+                System.out.println("Resposta inválida, favor informar novamente a resposta");
+                opcao = leitor.nextLine().toLowerCase().charAt(0); 
+            }
+            if (opcao=='a'){
+                acertou();
+                System.out.println("Parabéns, você completou todos os desafios desta sala.");
+            }
+            else if ((opcao=='b') || (opcao=='c') || (opcao=='d')){
+                errou();
+            }
+        }while(opcao!='a');
+        
+    }
+    
+    public static void salaPreCalculo(){
         
         //Questão 1   
         do{
