@@ -30,13 +30,13 @@ static Scanner leitor = new Scanner(System.in);
         System.out.print("Digite a opção desejada: ");
         opcao = leitor.nextLine().toLowerCase().charAt(0);
         switch (opcao) {
-            case 'a': start();
+            case 'a': inicio();
                 break;
-            case 'b':
+            case 'b': instrucoes();
                 break;
-            case 'c':
+            case 'c': recorde();
                 break;
-            case 'd':
+            case 'd': creditos();
                 break;
             case 'e':
                 System.out.println("Você Saiu!");
@@ -48,7 +48,7 @@ static Scanner leitor = new Scanner(System.in);
     }
     
     
-    public static void start() {
+    public static void inicio() {
         System.out.print(" Bem vindo ao jogo RPG “Escola do Caos”,\n antes de mais nada, "
                 + "nos informe qual será seu nome neste jogo: ");
         String nome = leitor.nextLine().toUpperCase();
@@ -92,32 +92,60 @@ static Scanner leitor = new Scanner(System.in);
                     System.out.print("Você possui somente duas opções, ir para direita ou para esquerda.\n Digite a direção que deseja seguir: ");
                     escolha = leitor.nextLine().toLowerCase();
                 }
-                if (escolha.equals("esquerda")){
-                    char escolha2;
+                
+                switch(escolha){
+                    case "esquerda": esquerda();
+                        break;
+                    case "direita": direita();
+                        break;
+                    default: System.out.println("Opção inválida!");
+                }
+    }
+    
+    
+    public static void esquerda() {
+                char escolha;
                     do{
                        System.out.print("Você segue em direção ao corredor da esquerda e há duas salas com a descrição.\n"
                        + "(a) ConceitosDeComputacao\n"
                        + "(b) Algoritmos\n"
-                       + "(c) Voltar para o corredor da direita\n"
+                       + "(c) Ir para o corredor da direita\n"
                        + "Onde você deseja ir? ");
-                        escolha2 = leitor.nextLine().toLowerCase().charAt(0);
-                            switch (escolha2){
-                                case 'a': salaAlgoritmos();
+                        escolha = leitor.nextLine().toLowerCase().charAt(0);
+                            switch (escolha){
+                                case 'a': salaConceitosComputacao();
                                     break;
                                 case 'b': salaAlgoritmos();
                                     break;
-                                case 'c': System.out.println("Saiu");
+                                case 'c': direita();
                                     break;
                                 default: System.out.print("Você possui somente duas opções, ir para ConceitosDeComputacao ou para Algoritmos.\n Digite qual sala você deseja entrar: ");
-                                escolha2 = leitor.nextLine().toLowerCase().charAt(0);
+                                escolha = leitor.nextLine().toLowerCase().charAt(0);
                             }
-                    }while(escolha2!=('c'));    
-                }
-                        
-        
+                    }while(escolha!=('c'));
     }
     
-    
+    public static void direita() {
+                char escolha;
+                    do{
+                       System.out.print("Você segue em direção ao corredor da direita e há duas salas com a descrição.\n"
+                       + "(a) PreCalculo\n"
+                       + "(b) FundamentosdeADM\n"
+                       + "(c) Ir para o corredor da esquerda\n"
+                       + "Onde você deseja ir? ");
+                        escolha = leitor.nextLine().toLowerCase().charAt(0);
+                            switch (escolha){
+                                case 'a': salaPreCalculo();
+                                    break;
+                                case 'b': salaFundamentos();
+                                    break;
+                                case 'c': esquerda();
+                                    break;
+                                default: System.out.print("Você possui somente duas opções, ir para ConceitosDeComputacao ou para Algoritmos.\n Digite qual sala você deseja entrar: ");
+                                escolha = leitor.nextLine().toLowerCase().charAt(0);
+                            }
+                    }while(escolha!=('c'));
+    }
     
     public static void salaConceitosComputacao(){
         
@@ -553,6 +581,26 @@ static Scanner leitor = new Scanner(System.in);
             }
         }while(opcao!='a');
         
+    }
+    
+    public static void instrucoes() {
+        System.out.println("Para cada resposta correta você irá somar 2 pontos\n"
+                + "Para cada resposta incorreta você irá perder 1 pontos\n"
+                + "O jogo se inicia com um total de 5 pontos acumulados\n"
+                + "Para ganhar o jogo é necessário coletar todos os emblemas e obter a pedra mágica para assim sair da escola");
+    }
+    
+    public static void recorde() {
+        System.out.println("O maior recorde atual foi de "+soma+" pontos!");
+    }
+    
+    public static void creditos() {
+        System.out.println("Alexandre dos Santos Mignon\n"
+                + "Stelvio Henrique Ignazio Barboza\n"
+                + "Keli Cristiane Vido\n"
+                + "Ana Marta de Brito Borges Avelas de Araujo\n"
+                + "Leonildo Carnevalli Junior\n"
+                + "Raul Dias Paiva Junior");
     }
        
 //Função responsável por subtrair um ponto caso o jogar erra uma questão. 
