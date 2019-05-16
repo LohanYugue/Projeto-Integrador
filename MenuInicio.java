@@ -13,6 +13,7 @@ public class MenuInicio {
         System.out.println("|___| /__/ \\__| \\___/ |_| \\__,_|   \\__,_| \\___/   \\__| \\__,_| \\___/ /__/");
 
         System.out.println("a)Jogar");
+        hgdhkffkkkk
         System.out.println("b)Sair");
         char inicio = leitor.nextLine().toLowerCase().charAt(0);
         while ((inicio != 'a') && (inicio != 'b')) {
