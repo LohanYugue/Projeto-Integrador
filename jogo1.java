@@ -6,12 +6,12 @@ import java.util.Scanner;
  *
  * @author lohan.ypyugue
  */
-public class jogo {
+public class jogo { 
 
     static Scanner leitor = new Scanner(System.in);
     static int soma = 5;
     static char opcao;
-     public jogo() {}
+     public jogo() {} 
 
     public void displayMessage() {
         // Ínicio
@@ -54,7 +54,7 @@ public class jogo {
     }
 
     public static void main(String[] args) {
-        Jogo myJogo = new Jogo();
+        jogo myJogo = new jogo();
         myJogo.displayMessage(); // LUKAS PASSOU POR AQUI!
        
         }
