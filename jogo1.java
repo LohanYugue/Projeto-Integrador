@@ -11,7 +11,7 @@ public class jogo {
     static Scanner leitor = new Scanner(System.in);
     static int soma = 5;
     static char opcao;
-     public Jogo() {}
+     public jogo() {}
 
     public void displayMessage() {
         // Ínicio
