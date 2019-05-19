@@ -6,7 +6,7 @@ import java.util.Scanner;
  *
  * @author lohan.ypyugue
  */
-public class Jogo {
+public class jogo {
 
     static Scanner leitor = new Scanner(System.in);
     static int soma = 5;
