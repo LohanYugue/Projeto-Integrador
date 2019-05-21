@@ -11,10 +11,9 @@ public class jogo {
     static Scanner leitor = new Scanner(System.in);
     static int soma = 5;
     static char opcao;
-     public jogo() {} 
-
-    public void displayMessage() {
-        // Ínicio
+     
+    public static void main(String[] args) {
+        
         do { System.out.println(" ___                   _               _                                ");
         System.out.println("| __|  ___  __   ___  | |  __ _     __| |  ___     __   __ _   ___   ___");
         System.out.println("| _|  (_-< / _| / _ \\ | | / _` |   / _` | / _ \\   / _| / _` | / _ \\ (_-<");
@@ -50,12 +49,6 @@ public class jogo {
                     System.out.println("Opção inválida!");
             }
         } while (opcao != 'e');
-    
-    }
-
-    public static void main(String[] args) {
-        jogo myJogo = new jogo();
-        myJogo.displayMessage(); // LUKAS PASSOU POR AQUI!
        
         }
 
@@ -170,6 +163,7 @@ public class jogo {
 
     public static void salaConceitosComputacao() {
 
+        
         //Questão 1   
         do {
             System.out.println("***SALA DE CONCEITOS DE COMPUTAÇÃO***");
