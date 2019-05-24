@@ -6,30 +6,31 @@ import java.util.Scanner;
  *
  * @author lohan.ypyugue
  */
-public class jogo { 
+public class jogo {
 
     static Scanner leitor = new Scanner(System.in);
     static int soma = 5;
     static char opcao;
-     
+
     public static void main(String[] args) {
-        
-        do { System.out.println(" ___                   _               _                                ");
-        System.out.println("| __|  ___  __   ___  | |  __ _     __| |  ___     __   __ _   ___   ___");
-        System.out.println("| _|  (_-< / _| / _ \\ | | / _` |   / _` | / _ \\   / _| / _` | / _ \\ (_-<");
-        System.out.println("|___| /__/ \\__| \\___/ |_| \\__,_|   \\__,_| \\___/   \\__| \\__,_| \\___/ /__/");
-        System.out.println("\n");
-        System.out.println("***********");
-        System.out.println("(A) Jogar");
-        System.out.println("(B) Instruções");
-        System.out.println("(C) Recorde");
-        System.out.println("(D) Créditos");
-        System.out.println("(E) Sair");
-        System.out.println("***********");
-        System.out.println("\n");
-        System.out.print("Digite a opção desejada: ");
-        opcao = leitor.nextLine().toLowerCase().charAt(0);
-        switch (opcao) {
+
+        do {
+            System.out.println(" ___                   _               _                                ");
+            System.out.println("| __|  ___  __   ___  | |  __ _     __| |  ___     __   __ _   ___   ___");
+            System.out.println("| _|  (_-< / _| / _ \\ | | / _` |   / _` | / _ \\   / _| / _` | / _ \\ (_-<");
+            System.out.println("|___| /__/ \\__| \\___/ |_| \\__,_|   \\__,_| \\___/   \\__| \\__,_| \\___/ /__/");
+            System.out.println("\n");
+            System.out.println("***********");
+            System.out.println("(A) Jogar");
+            System.out.println("(B) Instruções");
+            System.out.println("(C) Recorde");
+            System.out.println("(D) Créditos");
+            System.out.println("(E) Sair");
+            System.out.println("***********");
+            System.out.println("\n");
+            System.out.print("Digite a opção desejada: ");
+            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            switch (opcao) {
                 case 'a':
                     inicio();
                     break;
@@ -49,8 +50,8 @@ public class jogo {
                     System.out.println("Opção inválida!");
             }
         } while (opcao != 'e');
-       
-        }
+
+    }
 
     public static void inicio() {
         System.out.print(" Bem vindo ao jogo RPG “Escola do Caos”,\n antes de mais nada, "
@@ -87,26 +88,10 @@ public class jogo {
                 + "*****************************\n"
                 + "Olha com mais atenção na porta e percebe que há 5 espaços com formato octogonal vazios, como se faltasse algo!\n"
                 + "Você precisa encontrar a pedra mágica e os cinco emblemas para salvar sua mãe!\n"
-                + "Há dois corredores para seguir\n"
-                + "Esquerda\n"
-                + "Direita\n"
-                + "Qual você deseja seguir? ");
+                + "Há dois corredores para seguir\n");
+        entrada();
         String escolha = leitor.nextLine().toLowerCase();
-        while (!escolha.equals("esquerda") && !escolha.equals("direita")) {
-            System.out.print("Você possui somente duas opções, ir para direita ou para esquerda.\n Digite a direção que deseja seguir: ");
-            escolha = leitor.nextLine().toLowerCase();
-        }
 
-        switch (escolha) {
-            case "esquerda":
-                esquerda();
-                break;
-            case "direita":
-                direita();
-                break;
-            default:
-                System.out.println("Opção inválida!");
-        }
     }
 
     public static void esquerda() {
@@ -115,9 +100,13 @@ public class jogo {
             System.out.print("Você segue em direção ao corredor da esquerda e há duas salas com a descrição.\n"
                     + "(a) ConceitosDeComputacao\n"
                     + "(b) Algoritmos\n"
-                    + "(c) Ir para o corredor da direita\n"
+                    + "(c) sair deste corredor e voltar para entrada principal que está trancada\n"
                     + "Onde você deseja ir? ");
             escolha = leitor.nextLine().toLowerCase().charAt(0);
+            if (escolha == 'c'){
+                System.out.println("Voce voltou para a entrada principal e deve encontrar os emblemas que estão nos dois corredores");
+                entrada();
+            }
             switch (escolha) {
                 case 'a':
                     salaConceitosComputacao();
@@ -125,25 +114,46 @@ public class jogo {
                 case 'b':
                     salaAlgoritmos();
                     break;
-                case 'c':
-                    direita();
-                    break;
+               
                 default:
-                    System.out.print("Você possui somente duas opções, ir para ConceitosDeComputacao ou para Algoritmos.\n Digite qual sala você deseja entrar: ");
+                    System.out.print("Você possui somente três opções, ir para ConceitosDeComputacao e para Algoritmos ou sair desta sala"
+                            + " e voltar para a entrada principal \n Digite qual sala você deseja entrar: ");
                     escolha = leitor.nextLine().toLowerCase().charAt(0);
             }
         } while (escolha != ('c'));
+    }
+
+    public static void entrada() {
+        char escolha;
+        System.out.println(" Corredor 'A' da esquerda ou corredor 'B' da direita qual deseja seguir, corredor A OU B");
+        escolha = leitor.nextLine().toLowerCase().charAt(0);
+        switch (escolha) {
+            case 'a':
+                esquerda();
+                break;
+            case 'b':
+                direita();
+                break;
+            default:
+                System.out.println("Opção inválida!");
+        }
+
     }
 
     public static void direita() {
         char escolha;
         do {
             System.out.print("Você segue em direção ao corredor da direita e há duas salas com a descrição.\n"
-                    + "(a) PreCalculo\n"
+                    + "(a) precalculo\n"
                     + "(b) FundamentosdeADM\n"
-                    + "(c) Ir para o corredor da esquerda\n"
+                    + "(c) sair deste corredor e voltar para a entrada principal que está trancada\n"
                     + "Onde você deseja ir? ");
             escolha = leitor.nextLine().toLowerCase().charAt(0);
+            
+            if (escolha == 'c'){
+                System.out.println("Voce voltou para a entrada principal e deve encontrar os emblemas que estão nos dois corredores");
+                entrada();
+            }
             switch (escolha) {
                 case 'a':
                     salaPreCalculo();
@@ -151,11 +161,9 @@ public class jogo {
                 case 'b':
                     salaFundamentos();
                     break;
-                case 'c':
-                    esquerda();
-                    break;
+                
                 default:
-                    System.out.print("Você possui somente duas opções, ir para ConceitosDeComputacao ou para Algoritmos.\n Digite qual sala você deseja entrar: ");
+                    System.out.print("Você possui somente três opções, ir para pré-calculo e para ADM ou sair deste corredor.\n Digite qual sala você deseja entrar: ");
                     escolha = leitor.nextLine().toLowerCase().charAt(0);
             }
         } while (escolha != ('c'));
@@ -163,7 +171,6 @@ public class jogo {
 
     public static void salaConceitosComputacao() {
 
-        
         //Questão 1   
         do {
             System.out.println("***SALA DE CONCEITOS DE COMPUTAÇÃO***");
