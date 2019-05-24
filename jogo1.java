@@ -121,10 +121,17 @@ public class jogo {
 
                 default:
                     System.out.print("Você possui somente três opções, ir para ConceitosDeComputacao e para Algoritmos ou sair desta sala"
-                            + " e voltar para a entrada principal \n Digite qual sala você deseja entrar: ");
+                            + " e voltar para a entrada principal \n Digite umas das três opcões: ( A,B ou C)");
                     escolha = leitor.nextLine().toLowerCase().charAt(0);
+                    if (escolha == 'a') {
+                        esquerda();
+                    } else if (escolha == 'b') {
+                        direita();
+                    } else if (escolha == 'c') {
+                        entrada();
+                    }
             }
-        } while (escolha == ('c'));
+        } while (escolha != 'c' && escolha != 'b' && escolha != 'a');
     }
 
     public static void entrada() {
@@ -177,11 +184,18 @@ public class jogo {
                 case 'c':
                     entrada();
                 default:
-                    System.out.print("Você possui somente três opções, ir para pré-calculo e para ADM ou sair deste corredor.\n Digite qual sala você deseja entrar: ");
+                    System.out.print("Você possui somente três opções, ir para pré-calculo e para ADM ou sair deste corredor.\n Digite umas das três opcões: ( A,B ou C) ");
                     escolha = leitor.nextLine().toLowerCase().charAt(0);
+                    if (escolha == 'a') {
+                        esquerda();
+                    } else if (escolha == 'b') {
+                        direita();
+                    } else if (escolha == 'c') {
+                        entrada();
+                    }
             }
 
-        }while (escolha == ('c'));
+        } while (escolha != 'c' && escolha != 'b' && escolha != 'a');
     }
 
     public static void salaConceitosComputacao() {
