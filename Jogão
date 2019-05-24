@@ -21,7 +21,7 @@ public class jogo2 {
         menu();
         //chavesDaSala(chaves);
     }
-
+ 
     static void menu() {
         do {
             System.out.println(" ___                   _               _                                ");
