@@ -12,8 +12,7 @@ public class jogo {
     static int soma = 5;
     static char opcao;
 
-    public static void main(String[] args) {
-
+    public void displaymessage() {
         do {
             System.out.println(" ___                   _               _                                ");
             System.out.println("| __|  ___  __   ___  | |  __ _     __| |  ___     __   __ _   ___   ___");
@@ -53,7 +52,11 @@ public class jogo {
 
     }
 
-    public static void inicio() {
+    public static void main(String[] args) {
+        jogo myjogo = new jogo();
+        myjogo.displaymessage();
+ }
+public static void inicio() {
         System.out.print(" Bem vindo ao jogo RPG “Escola do Caos”,\n antes de mais nada, "
                 + "nos informe qual será seu nome neste jogo: ");
         String nome = leitor.nextLine().toUpperCase();
@@ -94,7 +97,7 @@ public class jogo {
 
     }
 
-public static void esquerda() {
+    public static void esquerda() {
         char escolha;
         do {
             System.out.print("Você segue em direção ao corredor da esquerda e há duas salas com a descrição.\n"
@@ -104,7 +107,7 @@ public static void esquerda() {
                     + "Onde você deseja ir? ");
             escolha = leitor.nextLine().toLowerCase().charAt(0);
             if (escolha == 'c') {
-               retornoDisplayMessage ();
+                retornoDisplayMessage();
             }
             switch (escolha) {
                 case 'a':
@@ -122,7 +125,7 @@ public static void esquerda() {
                     } else if (escolha == 'b') {
                         salaAlgoritmos();
                     } else if (escolha == 'c') {
-                        retornoDisplayMessage ();
+                        retornoDisplayMessage();
                     }
 
             }
@@ -154,10 +157,12 @@ public static void esquerda() {
 
         } while (escolha != 'a' && escolha != 'b');
     }
-public static void retornoDisplayMessage (){
-    System.out.println("\n\tVoce voltou para a entrada principal e deve encontrar os emblemas que estão nos dois corredores");
-                        entrada();
-}
+
+    public static void retornoDisplayMessage() {
+        System.out.println("\n\tVoce voltou para a entrada principal e deve encontrar os emblemas que estão nos dois corredores");
+        entrada();
+    }
+
     public static void direita() {
         char escolha;
         do {
@@ -169,7 +174,7 @@ public static void retornoDisplayMessage (){
             escolha = leitor.nextLine().toLowerCase().charAt(0);
 
             if (escolha == 'c') {
-                retornoDisplayMessage ();
+                retornoDisplayMessage();
             }
 
             switch (escolha) {
@@ -189,7 +194,7 @@ public static void retornoDisplayMessage (){
                         salaFundamentos();
                     } else if (escolha == 'c') {
 
-                        retornoDisplayMessage ();
+                        retornoDisplayMessage();
                     }
             }
 
