@@ -94,7 +94,7 @@ public class jogo {
 
     }
 
-    public static void esquerda() {
+public static void esquerda() {
         char escolha;
         do {
             System.out.print("Você segue em direção ao corredor da esquerda e há duas salas com a descrição.\n"
@@ -104,7 +104,7 @@ public class jogo {
                     + "Onde você deseja ir? ");
             escolha = leitor.nextLine().toLowerCase().charAt(0);
             if (escolha == 'c') {
-                System.out.println("Voce voltou para a entrada principal e deve encontrar os emblemas que estão nos dois corredores");
+               retornoDisplayMessage ();
             }
             switch (escolha) {
                 case 'a':
@@ -113,23 +113,18 @@ public class jogo {
                 case 'b':
                     salaAlgoritmos();
                     break;
-                case 'c':
-
-                    entrada();
-
-                    break;
-
                 default:
-                    System.out.print("Você possui somente três opções, ir para ConceitosDeComputacao e para Algoritmos ou sair desta sala"
-                            + " e voltar para a entrada principal \n Digite umas das três opcões: ( A,B ou C)");
+                    System.out.print("Você possui somente três opções: \n\ta) ConceitosDeComputacao \n\tb) Algoritmos \n\tc) sair desta sala"
+                            + " e voltar para a entrada principal \n Digite apenas umas delas!");
                     escolha = leitor.nextLine().toLowerCase().charAt(0);
                     if (escolha == 'a') {
-                        esquerda();
+                        salaConceitosComputacao();
                     } else if (escolha == 'b') {
-                        direita();
+                        salaAlgoritmos();
                     } else if (escolha == 'c') {
-                        entrada();
+                        retornoDisplayMessage ();
                     }
+
             }
         } while (escolha != 'c' && escolha != 'b' && escolha != 'a');
     }
@@ -159,7 +154,10 @@ public class jogo {
 
         } while (escolha != 'a' && escolha != 'b');
     }
-
+public static void retornoDisplayMessage (){
+    System.out.println("\n\tVoce voltou para a entrada principal e deve encontrar os emblemas que estão nos dois corredores");
+                        entrada();
+}
     public static void direita() {
         char escolha;
         do {
@@ -171,31 +169,31 @@ public class jogo {
             escolha = leitor.nextLine().toLowerCase().charAt(0);
 
             if (escolha == 'c') {
-                System.out.println("Voce voltou para a entrada principal e deve encontrar os emblemas que estão nos dois corredores");
-
+                retornoDisplayMessage ();
             }
+
             switch (escolha) {
                 case 'a':
-                    salaPreCalculo();
+
                     break;
                 case 'b':
                     salaFundamentos();
                     break;
-                case 'c':
-                    entrada();
+
                 default:
-                    System.out.print("Você possui somente três opções, ir para pré-calculo e para ADM ou sair deste corredor.\n Digite umas das três opcões: ( A,B ou C) ");
+                    System.out.print("Você possui somente três opções, \n\ta)pré-calculo \n\tb)ADM \n\tc)sair deste corredor.\n Digite apenas umas das três opcões: ");
                     escolha = leitor.nextLine().toLowerCase().charAt(0);
                     if (escolha == 'a') {
-                        esquerda();
+                        salaPreCalculo();
                     } else if (escolha == 'b') {
-                        direita();
+                        salaFundamentos();
                     } else if (escolha == 'c') {
-                        entrada();
+
+                        retornoDisplayMessage ();
                     }
             }
 
-        } while (escolha != 'c' && escolha != 'b' && escolha != 'a');
+        } while (escolha == 'a' && escolha == 'b' && escolha == 'c');
     }
 
     public static void salaConceitosComputacao() {
@@ -390,7 +388,7 @@ public class jogo {
                     + "em apenas 20 anos. Administrar essa quantidade de empregados não é uma tarefa nada fácil não é mesmo? No entanto, pioneiros da escola clássica "
                     + "desenvolveram conceitos e técnicas para estruturar, controlar e organizar sua administração."
                     + "Os autores da escola clássica, responsável por sistematizar à administração, no século XX foram?");
-            System.out.println("(a)Taylor, Ford e Max Webber\n(b)Ford, Taylor e Alexandre Magno\n(c)Dante, Ragnar e Pascoal\n(d)Ford e Taylor ");
+            System.out.println("\t(a)Taylor, Ford e Max Webber\n\t(b)Ford, Taylor e Alexandre Magno\n\t(c)Dante, Ragnar e Pascoal\n\t(d)Ford e Taylor ");
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase().charAt(0);
 
@@ -424,7 +422,7 @@ public class jogo {
         do {
             System.out.println("*******Questão 3*******");
             System.out.println("A palavra usada para indicar que a organização atinge seus objetivos é:");
-            System.out.println("(a)Eficiência\n(b)Eficácia\n(c)Qualidade\n(d)Incompetência");
+            System.out.println("\t(a)Eficiência\n\t(b)Eficácia\n\t(c)Qualidade\n\t(d)Incompetência");
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase().charAt(0);
 
@@ -441,7 +439,7 @@ public class jogo {
         do {
             System.out.println("*******Questão 4*******");
             System.out.println("Eliminação de desperdício e fabricação com qualidade são princípios mais importante do sistema:");
-            System.out.println("(a)Operacional\n(b)Java\n(c)Toyota\n(d)Japonês");
+            System.out.println("\t(a)Operacional\n\t(b)Java\n\t(c)Toyota\n\t(d)Japonês");
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase().charAt(0);
 
@@ -458,7 +456,7 @@ public class jogo {
         do {
             System.out.println("*******Questão 5*******");
             System.out.println("Planejar, organizar, controlar, executar é o mesmo que Administração?");
-            System.out.println("(a)Sim\n(b)Não\n(c)Talvez\n(d)Em alguns casos");
+            System.out.println("\t(a)Sim\n\t(b)Não\n\t(c)Talvez\n\t(d)Em alguns casos");
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase().charAt(0);
 
