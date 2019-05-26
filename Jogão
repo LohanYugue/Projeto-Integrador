@@ -11,18 +11,14 @@ public class jogo2 {
     static Scanner leitor = new Scanner(System.in);
     static int soma = 5;
     static char opcao;
-    static int trancaSalaConceitos = 1;
-    static int trancaSalaAlgoritmos = 1;
-    static int trancaSalaPrecalculo = 1;
-    static int trancaSalaFundamentos = 1;
 
     public static void main(String[] args) {
         int chaves = 0;
-        menu();
+        menu(chaves);
         //chavesDaSala(chaves);
     }
- 
-    static void menu() {
+
+    static void menu(int chaves) {
         do {
             System.out.println(" ___                   _               _                                ");
             System.out.println("| __|  ___  __   ___  | |  __ _     __| |  ___     __   __ _   ___   ___");
@@ -41,7 +37,7 @@ public class jogo2 {
             opcao = leitor.nextLine().toLowerCase().charAt(0);
             switch (opcao) {
                 case 'a':
-                    crontroladora();
+                    crontroladora(chaves);
                     break;
                 case 'b':
                     instrucoes();
@@ -61,30 +57,35 @@ public class jogo2 {
         } while (opcao != 'e');
     }
 
-    static void crontroladora() {
-        ContaHistoria();
-        String escolhaLida = corredores();
+    static void crontroladora(int chaves) {
         int[][] trancou = tranca();
-        //escolhaLida = corredores();
-        //queima(trancou);
-        int SalaFinal = queima(trancou);
-        validaCorredor(escolhaLida, trancou, SalaFinal);
+        ContaHistoria(trancou, chaves);
+        //String escolhaLida = corredores();
+        
+        //validaCorredor(trancou, chaves);
     }
 
-    public static void validaCorredor(String escolhaLida, int[][] trancou, int SalaFinal) {
-        switch (escolhaLida) {
+    public static void validaCorredor( int[][] trancou, int chaves) {
+        System.out.print("\nEsquerda\n" + "Direita\n" + "Qual você deseja seguir?");
+        String escolha = leitor.nextLine().toLowerCase();
+        PulaUmaLinha();
+        while (!escolha.equals("esquerda") && !escolha.equals("direita")) {
+            System.out.print("Você possui somente duas opções, ir para direita ou para esquerda.\n Digite a direção que deseja seguir: ");
+            escolha = leitor.nextLine().toLowerCase();
+        }
+        switch (escolha) {
             case "esquerda":
-                esquerda(trancou, SalaFinal);
+                esquerda(trancou, chaves);
                 break;
             case "direita":
-                direita(trancou, SalaFinal);
+                direita(trancou, chaves);
                 break;
             default:
                 System.out.println("Opção inválida!");
         }
     }
 
-    public static void ContaHistoria() {
+    public static void ContaHistoria(int [][]trancou, int chaves) {
         System.out.print(" Bem vindo ao jogo RPG “Escola do Caos”,\n antes de mais nada, "
                 + "nos informe qual será seu nome neste jogo: ");
         String nome = leitor.nextLine().toUpperCase();
@@ -115,10 +116,11 @@ public class jogo2 {
                 + "Olha com mais atenção na porta e percebe que há 5 espaços com formato octogonal vazios, como se faltasse algo!\n"
                 + "Você precisa encontrar a pedra mágica e os cinco emblemas para salvar sua mãe!\n"
                 + "Há dois corredores para seguir\n");
+        validaCorredor(trancou, chaves);
 
     }
 
-    static String corredores() {
+    /*static String corredores() {
         System.out.print("\nEsquerda\n" + "Direita\n" + "Qual você deseja seguir?");
         String escolha = leitor.nextLine().toLowerCase();
         PulaUmaLinha();
@@ -127,30 +129,19 @@ public class jogo2 {
             escolha = leitor.nextLine().toLowerCase();
         }
         return escolha;
-    }
+    }*/
 
     static int[][] tranca() {
         int[][] tranca = new int[2][2];
         tranca[0][0] = 0;
-        tranca[1][0] = 0;
         tranca[0][1] = 0;
+        tranca[1][0] = 0;
         tranca[1][1] = 0;
         return (tranca);
     }
 
-    static int queima(int[][] trancou) {
-        int chaves = 3;
-        for (int i = 0; i <= 2; i++) {
-            for (int j = 0; j <= 2; j++) {
-                chaves += trancou[i][j];
-            }
-        }
-        return (chaves);
-    }
-
-    static int[][] esquerda(int[][] trancou, int SalaFinal) {
+    static int[][] esquerda(int[][] trancou, int chaves) {
         char escolha;
-        // System.out.println(chaves);
         do {
             System.out.print("Você segue em direção ao corredor da esquerda e há duas salas com a descrição.\n"
                     + "(a) ConceitosDeComputacao\n"
@@ -163,23 +154,29 @@ public class jogo2 {
                 case 'a':
                     if (trancou[0][0] < 1) {
                         trancou[0][0]++;
+                        chaves++;
+                        System.out.println("***"+chaves+"***");
                         salaConceitosComputacao();
+                    } else if (chaves == 4) {
+                        System.out.println("\n\n\nsalve salve\n\n\n");
                     } else {
                         System.out.println("\n sala trancada \n");
                     }
                     break;
                 case 'b':
-                    if (trancou[1][0] < 1) {
-                        trancou[1][0]++;
+                    if (trancou[0][1] < 1) {
+                        trancou[0][1]++;
+                        chaves++;
+                        System.out.println("***"+chaves+"***");
                         salaAlgoritmos();
-                    } else if (SalaFinal == 4) {
+                    } else if (chaves == 4) {
                         System.out.println("\n\n\nsalve salve\n\n\n");
                     } else {
                         System.out.println("\n sala trancada \n");
                     }
                     break;
                 case 'c':
-                    corredores();
+                    validaCorredor(trancou, chaves);
                     break;
                 default:
                     System.out.print("Você possui somente duas opções, ir para ConceitosDeComputacao ou para Algoritmos.\n Digite qual sala você deseja entrar: ");
@@ -189,7 +186,7 @@ public class jogo2 {
         return (trancou);
     }
 
-    static int[][] direita(int[][] trancou, int SalaFinal) {
+    static int[][] direita(int[][] trancou, int chaves) {
         char escolha;
         do {
             System.out.print("Você segue em direção ao corredor da direita e há duas salas com a descrição.\n"
@@ -200,23 +197,31 @@ public class jogo2 {
             escolha = leitor.nextLine().toLowerCase().charAt(0);
             switch (escolha) {
                 case 'a':
-                    if (trancou[0][1] < 1) {
-                        trancou[0][1]++;
-                        salaConceitosComputacao();
+                    if (trancou[1][0] < 1) {
+                        trancou[1][0]++;
+                        chaves++;
+                        System.out.println("***"+chaves+"***");
+                        salaPreCalculo();
+                    } else if (chaves == 4) {
+                        System.out.println("\n\n\nsalve salve\n\n\n");
                     } else {
                         System.out.println("\n sala trancada \n");
                     }
                     break;
                 case 'b':
-                    if (trancou[1][0] < 1) {
+                    if (trancou[1][1] < 1) {
                         trancou[1][1]++;
+                        chaves++;
+                        System.out.println("***"+chaves+"***");
                         salaFundamentos();
+                    } else if (chaves == 4) {
+                        System.out.println("\n\n\nsalve salve\n\n\n");
                     } else {
                         System.out.println("\n sala trancada \n");
                     }
                     break;
                 case 'c':
-                    corredores();
+                    validaCorredor(trancou, chaves);
                     break;
                 default:
                     System.out.print("Você possui somente duas opções, ir para ConceitosDeComputacao ou para Algoritmos.\n Digite qual sala você deseja entrar: ");
@@ -650,3 +655,4 @@ public class jogo2 {
         System.out.print("\n");
     }
 }
+
