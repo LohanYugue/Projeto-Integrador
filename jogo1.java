@@ -2,23 +2,25 @@ package jogo;
 
 import java.util.Scanner;
 
-/**
- *
- * @author lohan.ypyugue
- */
-public class jogo {
+public class jogo2 {
 
     static Scanner leitor = new Scanner(System.in);
     static int soma = 5;
     static char opcao;
 
-    public void displaymessage() {
+    public static void main(String[] args) {
+        int chaves = 0;
+        menu(chaves);
+        
+    }
+
+    static void menu(int chaves) {
         do {
             System.out.println(" ___                   _               _                                ");
             System.out.println("| __|  ___  __   ___  | |  __ _     __| |  ___     __   __ _   ___   ___");
             System.out.println("| _|  (_-< / _| / _ \\ | | / _` |   / _` | / _ \\   / _| / _` | / _ \\ (_-<");
             System.out.println("|___| /__/ \\__| \\___/ |_| \\__,_|   \\__,_| \\___/   \\__| \\__,_| \\___/ /__/");
-            System.out.println("\n");
+            PulaUmaLinha();
             System.out.println("***********");
             System.out.println("(A) Jogar");
             System.out.println("(B) Instruções");
@@ -26,12 +28,12 @@ public class jogo {
             System.out.println("(D) Créditos");
             System.out.println("(E) Sair");
             System.out.println("***********");
-            System.out.println("\n");
+            PulaUmaLinha();
             System.out.print("Digite a opção desejada: ");
             opcao = leitor.nextLine().toLowerCase().charAt(0);
             switch (opcao) {
                 case 'a':
-                    inicio();
+                    crontroladora(chaves);
                     break;
                 case 'b':
                     instrucoes();
@@ -49,37 +51,32 @@ public class jogo {
                     System.out.println("Opção inválida!");
             }
         } while (opcao != 'e');
-
     }
 
-    public static void main(String[] args) {
-        jogo myjogo = new jogo();
-        myjogo.displaymessage();
- }
-public static void inicio() {
+    static void crontroladora(int chaves) {
+        int[][] trancou = tranca();
+        ContaHistoria(trancou, chaves);
+    }
+
+public static void ContaHistoria(int [][]trancou, int chaves) {
         System.out.print(" Bem vindo ao jogo RPG “Escola do Caos”,\n antes de mais nada, "
                 + "nos informe qual será seu nome neste jogo: ");
         String nome = leitor.nextLine().toUpperCase();
-        System.out.print("\n"
-                + "Elfo\n"
-                + "Mago\n"
-                + "Besta\n"
-                + "Humano\n"
-                + "\nMuito bem " + nome + ", agora digite o personagem você deseja ser:");
+        System.out.print("\n" + "Elfo\n" + "Mago\n" + "Besta\n" + "Humano\n" + "\nMuito bem " + nome + ", agora digite o personagem você deseja ser:");
         String personagem = leitor.nextLine().toUpperCase();
         while (!personagem.equals("ELFO") && !personagem.equals("MAGO") && !personagem.equals("BESTA") && !personagem.equals("HUMANO")) {
             System.out.print("Personagem inválido, digite um dos personagens acima: ");
             personagem = leitor.nextLine().toUpperCase();
         }
-        System.out.println("\n");
-        System.out.println("\n");
+        PulaUmaLinha();
+        PulaUmaLinha();
         System.out.println(nome + ", você é um " + personagem + ", que vive em uma terra misteriosa chamada "
                 + "Monsaraz, um lugar belo e pacífico,\n contudo, descobriu que sua mãe Freya adquiriu uma doença "
                 + "grave e muito rara que não tem cura,\n porém, através de muitas pesquisas e perguntas "
                 + "feitas aos habitantes da região,\n descobriu que há uma pedra mágica com poderes curadores, "
                 + "localizado além das terras de Monsaraz,\n em uma antiga escola, isolada nas montanhas.");
-        System.out.println("\n");
-        System.out.println("\n");
+        PulaUmaLinha();
+        PulaUmaLinha();
 
         System.out.print("Você parte em busca da pedra, após 4 longas horas de caminhada você chega a seu destino e encontra a escola que fica no fim de uma longa ponte.\n"
                 + "Após passar pela ponte, você se depera com uma grande porta já aberta! Adentra naquele ambiente inóspito e de repente a porta se fecha.\n"
@@ -92,113 +89,133 @@ public static void inicio() {
                 + "Olha com mais atenção na porta e percebe que há 5 espaços com formato octogonal vazios, como se faltasse algo!\n"
                 + "Você precisa encontrar a pedra mágica e os cinco emblemas para salvar sua mãe!\n"
                 + "Há dois corredores para seguir\n");
-        entrada();
-        String escolha = leitor.nextLine().toLowerCase();
+        validaCorredor(trancou, chaves);
 
+    }    
+    
+    public static void validaCorredor( int[][] trancou, int chaves) {
+        System.out.print("\nEsquerda\n" + "Direita\n" + "Qual você deseja seguir?");
+        String escolha = leitor.nextLine().toLowerCase();
+        PulaUmaLinha();
+        while (!escolha.equals("esquerda") && !escolha.equals("direita")) {
+            System.out.print("Você possui somente duas opções, ir para direita ou para esquerda.\n Digite a direção que deseja seguir: ");
+            escolha = leitor.nextLine().toLowerCase();
+        }
+        switch (escolha) {
+            case "esquerda":
+                esquerda(trancou, chaves);
+                break;
+            case "direita":
+                direita(trancou, chaves);
+                break;
+            default:
+                System.out.println("Opção inválida!");
+        }
+    }
+    
+    public static void volta( int[][] trancou, int chaves) {
+        System.out.println("\nVoce voltou para a entrada principal e deve encontrar os emblemas que estão nos dois corredores");
+        validaCorredor(trancou, chaves);
+    }
+    
+    static int[][] tranca() {
+        int[][] tranca = new int[2][2];
+        tranca[0][0] = 0;
+        tranca[0][1] = 0;
+        tranca[1][0] = 0;
+        tranca[1][1] = 0;
+        return (tranca);
     }
 
-    public static void esquerda() {
+    static int[][] esquerda(int[][] trancou, int chaves) {
         char escolha;
         do {
             System.out.print("Você segue em direção ao corredor da esquerda e há duas salas com a descrição.\n"
                     + "(a) ConceitosDeComputacao\n"
                     + "(b) Algoritmos\n"
-                    + "(c) sair deste corredor e voltar para entrada principal que está trancada\n"
-                    + "Onde você deseja ir? ");
-            escolha = leitor.nextLine().toLowerCase().charAt(0);
-            if (escolha == 'c') {
-                retornoDisplayMessage();
-            }
-            switch (escolha) {
-                case 'a':
-                    salaConceitosComputacao();
-                    break;
-                case 'b':
-                    salaAlgoritmos();
-                    break;
-                default:
-                    System.out.print("Você possui somente três opções: \n\ta) ConceitosDeComputacao \n\tb) Algoritmos \n\tc) sair desta sala"
-                            + " e voltar para a entrada principal \n Digite apenas umas delas!");
-                    escolha = leitor.nextLine().toLowerCase().charAt(0);
-                    if (escolha == 'a') {
-                        salaConceitosComputacao();
-                    } else if (escolha == 'b') {
-                        salaAlgoritmos();
-                    } else if (escolha == 'c') {
-                        retornoDisplayMessage();
-                    }
-
-            }
-        } while (escolha != 'c' && escolha != 'b' && escolha != 'a');
-    }
-
-    public static void entrada() {
-        char escolha;
-        do {
-            System.out.println(" Corredor 'A' da esquerda ou corredor 'B' da direita qual deseja seguir, corredor A OU B");
-            escolha = leitor.nextLine().toLowerCase().charAt(0);
-            switch (escolha) {
-                case 'a':
-                    esquerda();
-                    break;
-                case 'b':
-                    direita();
-                    break;
-                default:
-                    System.out.println("Opção inválida! \n Digite qual corredor pretende seguir A OU B ?");
-                    escolha = leitor.nextLine().toLowerCase().charAt(0);
-                    if (escolha == 'a') {
-                        esquerda();
-                    } else if (escolha == 'b') {
-                        direita();
-
-                    }
-            }
-
-        } while (escolha != 'a' && escolha != 'b');
-    }
-
-    public static void retornoDisplayMessage() {
-        System.out.println("\n\tVoce voltou para a entrada principal e deve encontrar os emblemas que estão nos dois corredores");
-        entrada();
-    }
-
-    public static void direita() {
-        char escolha;
-        do {
-            System.out.print("Você segue em direção ao corredor da direita e há duas salas com a descrição.\n"
-                    + "(a) precalculo\n"
-                    + "(b) FundamentosdeADM\n"
                     + "(c) sair deste corredor e voltar para a entrada principal que está trancada\n"
                     + "Onde você deseja ir? ");
             escolha = leitor.nextLine().toLowerCase().charAt(0);
 
-            if (escolha == 'c') {
-                retornoDisplayMessage();
-            }
-
             switch (escolha) {
                 case 'a':
-
+                    if (trancou[0][0] < 1) {
+                        trancou[0][0]++;
+                        chaves++;
+                        System.out.println("***"+chaves+"***");
+                        salaConceitosComputacao();
+                    } else if (chaves == 4) {
+                        System.out.println("\n\n\nsalve salve\n\n\n");
+                    } else {
+                        System.out.println("\n sala trancada \n");
+                    }
                     break;
                 case 'b':
-                    salaFundamentos();
-                    break;
-
-                default:
-                    System.out.print("Você possui somente três opções, \n\ta)pré-calculo \n\tb)ADM \n\tc)sair deste corredor.\n Digite apenas umas das três opcões: ");
-                    escolha = leitor.nextLine().toLowerCase().charAt(0);
-                    if (escolha == 'a') {
-                        salaPreCalculo();
-                    } else if (escolha == 'b') {
-                        salaFundamentos();
-                    } else if (escolha == 'c') {
-
-                        retornoDisplayMessage();
+                    if (trancou[0][1] < 1) {
+                        trancou[0][1]++;
+                        chaves++;
+                        System.out.println("***"+chaves+"***");
+                        salaAlgoritmos();
+                    } else if (chaves == 4) {
+                        System.out.println("\n\n\nsalve salve\n\n\n");
+                    } else {
+                        System.out.println("\n sala trancada \n");
                     }
+                    break;
+                case 'c':
+                    volta(trancou, chaves);
+                    break;
+                default:
+                    System.out.print("Você possui somente duas opções, ir para ConceitosDeComputacao ou para Algoritmos.\n Digite qual sala você deseja entrar: ");
+                    escolha = leitor.nextLine().toLowerCase().charAt(0);
             }
+        } while (escolha != ('c'));
+        return (trancou);
+    }
 
-        } while (escolha == 'a' && escolha == 'b' && escolha == 'c');
+    static int[][] direita(int[][] trancou, int chaves) {
+        char escolha;
+        do {
+            System.out.print("Você segue em direção ao corredor da direita e há duas salas com a descrição.\n"
+                    + "(a) PreCalculo\n"
+                    + "(b) FundamentosdeADM\n"
+                    + "(c) sair deste corredor e voltar para a entrada principal que está trancada\n"
+                    + "Onde você deseja ir? ");
+            escolha = leitor.nextLine().toLowerCase().charAt(0);
+            switch (escolha) {
+                case 'a':
+                    if (trancou[1][0] < 1) {
+                        trancou[1][0]++;
+                        chaves++;
+                        System.out.println("***"+chaves+"***");
+                        salaPreCalculo();
+                    } else if (chaves == 4) {
+                        System.out.println("\n\n\nsalve salve\n\n\n");
+                    } else {
+                        System.out.println("\n sala trancada \n");
+                    }
+                    break;
+                case 'b':
+                    if (trancou[1][1] < 1) {
+                        trancou[1][1]++;
+                        chaves++;
+                        System.out.println("***"+chaves+"***");
+                        salaFundamentos();
+                    } else if (chaves == 4) {
+                        System.out.println("\n\n\nsalve salve\n\n\n");
+                    } else {
+                        System.out.println("\n sala trancada \n");
+                    }
+                    break;
+                case 'c':
+                    volta(trancou, chaves);
+                    break;
+                default:
+                    System.out.print("Você possui somente duas opções, ir para ConceitosDeComputacao ou para Algoritmos.\n Digite qual sala você deseja entrar: ");
+                    escolha = leitor.nextLine().toLowerCase().charAt(0);
+            }
+        } while (escolha != ('c'));
+        return (trancou);
     }
 
     public static void salaConceitosComputacao() {
@@ -376,6 +393,7 @@ public static void inicio() {
             if (opcao == 'a') {
                 acertou();
                 System.out.println("Parabéns, você completou todos os desafios desta sala.");
+
             } else if ((opcao == 'b') || (opcao == 'c') || (opcao == 'd')) {
                 errou();
             }
@@ -393,7 +411,7 @@ public static void inicio() {
                     + "em apenas 20 anos. Administrar essa quantidade de empregados não é uma tarefa nada fácil não é mesmo? No entanto, pioneiros da escola clássica "
                     + "desenvolveram conceitos e técnicas para estruturar, controlar e organizar sua administração."
                     + "Os autores da escola clássica, responsável por sistematizar à administração, no século XX foram?");
-            System.out.println("\t(a)Taylor, Ford e Max Webber\n\t(b)Ford, Taylor e Alexandre Magno\n\t(c)Dante, Ragnar e Pascoal\n\t(d)Ford e Taylor ");
+            System.out.println("(a)Taylor, Ford e Max Webber\n(b)Ford, Taylor e Alexandre Magno\n(c)Dante, Ragnar e Pascoal\n(d)Ford e Taylor ");
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase().charAt(0);
 
@@ -427,7 +445,7 @@ public static void inicio() {
         do {
             System.out.println("*******Questão 3*******");
             System.out.println("A palavra usada para indicar que a organização atinge seus objetivos é:");
-            System.out.println("\t(a)Eficiência\n\t(b)Eficácia\n\t(c)Qualidade\n\t(d)Incompetência");
+            System.out.println("(a)Eficiência\n(b)Eficácia\n(c)Qualidade\n(d)Incompetência");
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase().charAt(0);
 
@@ -444,7 +462,7 @@ public static void inicio() {
         do {
             System.out.println("*******Questão 4*******");
             System.out.println("Eliminação de desperdício e fabricação com qualidade são princípios mais importante do sistema:");
-            System.out.println("\t(a)Operacional\n\t(b)Java\n\t(c)Toyota\n\t(d)Japonês");
+            System.out.println("(a)Operacional\n(b)Java\n(c)Toyota\n(d)Japonês");
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase().charAt(0);
 
@@ -461,7 +479,7 @@ public static void inicio() {
         do {
             System.out.println("*******Questão 5*******");
             System.out.println("Planejar, organizar, controlar, executar é o mesmo que Administração?");
-            System.out.println("\t(a)Sim\n\t(b)Não\n\t(c)Talvez\n\t(d)Em alguns casos");
+            System.out.println("(a)Sim\n(b)Não\n(c)Talvez\n(d)Em alguns casos");
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase().charAt(0);
 
@@ -599,12 +617,12 @@ public static void inicio() {
     public static void errou() {
         soma = soma - 1;
         if (soma != 0) {
-            System.out.println("\n");
+            PulaUmaLinha();
             System.out.println("Opção incoreta! Você perdeu 1 ponto.");
             System.out.println("Você possui " + soma + " pontos!");
-            System.out.println("\n");
+            PulaUmaLinha();
         } else {
-            System.out.println("\n");
+            PulaUmaLinha();
             System.out.println("Opção incoreta! Você perdeu 1 ponto.");
             System.out.println("Seus pontos chegaram a " + soma + " você perdeu!");
             System.exit(0);
@@ -613,11 +631,16 @@ public static void inicio() {
 
 //Função responsável por somar dois pontos caso o jogador acerte a questão
     public static void acertou() {
-        System.out.println("\n");
+        PulaUmaLinha();
         System.out.println("Opção correta! Parabéns você somou 2 pontos.");
         soma = soma + 2;
         System.out.println("Você possui " + soma + " pontos!");
-        System.out.println("\n");
+        PulaUmaLinha();
     }
 
+    //Funcao q pula uma linha
+    public static void PulaUmaLinha() {
+        System.out.print("\n");
+    }
 }
+
