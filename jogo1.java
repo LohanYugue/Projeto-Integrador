@@ -1,17 +1,19 @@
 package javaapplication1;
+
 import java.util.Scanner;
-public class NewClass {
+
+public class jogo2 {
+
     static Scanner leitor = new Scanner(System.in);
     static int soma = 5;
     static char opcao;
 
     public static void main(String[] args) {
-        int chaves = 0;
-        menu(chaves);
-        
+        menu();
+
     }
 
-    static void menu(int chaves) {
+    static void menu() {
         do {
             System.out.println(" ___                   _               _                                ");
             System.out.println("| __|  ___  __   ___  | |  __ _     __| |  ___     __   __ _   ___   ___");
@@ -30,7 +32,7 @@ public class NewClass {
             opcao = leitor.nextLine().toLowerCase().charAt(0);
             switch (opcao) {
                 case 'a':
-                    crontroladora(chaves);
+                    controladora();
                     break;
                 case 'b':
                     instrucoes();
@@ -50,12 +52,12 @@ public class NewClass {
         } while (opcao != 'e');
     }
 
-    static void crontroladora(int chaves) {
+    static void controladora() {
         int[][] trancou = tranca();
-        ContaHistoria(trancou, chaves);
+        ContaHistoria(trancou);
     }
 
-public static void ContaHistoria(int [][]trancou, int chaves) {
+    public static void ContaHistoria(int[][] trancou) {
         System.out.print(" Bem vindo ao jogo RPG “Escola do Caos”,\n antes de mais nada, "
                 + "nos informe qual será seu nome neste jogo: ");
         String nome = leitor.nextLine().toUpperCase();
@@ -86,11 +88,13 @@ public static void ContaHistoria(int [][]trancou, int chaves) {
                 + "Olha com mais atenção na porta e percebe que há 5 espaços com formato octogonal vazios, como se faltasse algo!\n"
                 + "Você precisa encontrar a pedra mágica e os cinco emblemas para salvar sua mãe!\n"
                 + "Há dois corredores para seguir\n");
-        validaCorredor(trancou, chaves);
 
-    }    
-    
-    public static void validaCorredor( int[][] trancou, int chaves) {
+        int chave = ValidaChave(trancou);
+        validaCorredor(trancou, chave);
+
+    }
+
+    public static void validaCorredor(int[][] trancou, int chave) {
         System.out.print("\nEsquerda\n" + "Direita\n" + "Qual você deseja seguir?");
         String escolha = leitor.nextLine().toLowerCase();
         PulaUmaLinha();
@@ -100,31 +104,54 @@ public static void ContaHistoria(int [][]trancou, int chaves) {
         }
         switch (escolha) {
             case "esquerda":
-                esquerda(trancou, chaves);
+                esquerda(trancou, chave);
                 break;
             case "direita":
-                direita(trancou, chaves);
+                direita(trancou, chave);
                 break;
             default:
                 System.out.println("Opção inválida!");
         }
     }
-    
-    public static void volta( int[][] trancou, int chaves) {
+
+    public static void volta(int[][] trancou, int chave) {
         System.out.println("\nVoce voltou para a entrada principal e deve encontrar os emblemas que estão nos dois corredores");
-        validaCorredor(trancou, chaves);
+        validaCorredor(trancou, chave);
     }
-    
+
     static int[][] tranca() {
-        int[][] tranca = new int[2][2];
+        int[][] tranca = new int[3][2];
         tranca[0][0] = 0;
         tranca[0][1] = 0;
         tranca[1][0] = 0;
         tranca[1][1] = 0;
+        tranca[2][0] = 0;
+        tranca[2][1] = 0;
         return (tranca);
     }
 
-    static int[][] esquerda(int[][] trancou, int chaves) {
+    static int ValidaChave(int[][] trancou) {
+        int junta = 0;
+        int chave;
+        for (int i = 0; i < trancou.length; i++) {
+            for (int j = 0; j < trancou[i].length; j++) {
+                junta += trancou[i][j];
+                System.out.println(i);
+                System.out.println("j" + j);
+                System.out.println("junta" + junta);
+            }
+        }
+        System.out.println("junta 2 : " + junta);
+        if (junta == 4) {
+            chave = 4;
+        } else {
+            chave = 0;
+        }
+        System.out.println("chave " + chave);
+        return chave;
+    }
+
+    static int[][] esquerda(int[][] trancou, int chave) {
         char escolha;
         do {
             System.out.print("Você segue em direção ao corredor da esquerda e há duas salas com a descrição.\n"
@@ -136,31 +163,29 @@ public static void ContaHistoria(int [][]trancou, int chaves) {
 
             switch (escolha) {
                 case 'a':
+                    chave = ValidaChave(trancou);
                     if (trancou[0][0] < 1) {
                         trancou[0][0]++;
-                        chaves++;
-                        System.out.println("***"+chaves+"***");
                         salaConceitosComputacao();
-                    } else if (chaves == 4) {
+                    } else if (chave == 4) {
                         System.out.println("\n\n\nsalve salve\n\n\n");
                     } else {
                         System.out.println("\n sala trancada \n");
                     }
                     break;
                 case 'b':
+                    chave = ValidaChave(trancou);
                     if (trancou[0][1] < 1) {
                         trancou[0][1]++;
-                        chaves++;
-                        System.out.println("***"+chaves+"***");
                         salaAlgoritmos();
-                    } else if (chaves == 4) {
+                    } else if (chave == 4) {
                         System.out.println("\n\n\nsalve salve\n\n\n");
                     } else {
                         System.out.println("\n sala trancada \n");
                     }
                     break;
                 case 'c':
-                    volta(trancou, chaves);
+                    volta(trancou, chave);
                     break;
                 default:
                     System.out.print("Você possui somente duas opções, ir para ConceitosDeComputacao ou para Algoritmos.\n Digite qual sala você deseja entrar: ");
@@ -170,7 +195,7 @@ public static void ContaHistoria(int [][]trancou, int chaves) {
         return (trancou);
     }
 
-    static int[][] direita(int[][] trancou, int chaves) {
+    static int[][] direita(int[][] trancou, int chave) {
         char escolha;
         do {
             System.out.print("Você segue em direção ao corredor da direita e há duas salas com a descrição.\n"
@@ -181,31 +206,29 @@ public static void ContaHistoria(int [][]trancou, int chaves) {
             escolha = leitor.nextLine().toLowerCase().charAt(0);
             switch (escolha) {
                 case 'a':
+                    chave = ValidaChave(trancou);
                     if (trancou[1][0] < 1) {
                         trancou[1][0]++;
-                        chaves++;
-                        System.out.println("***"+chaves+"***");
                         salaPreCalculo();
-                    } else if (chaves == 4) {
+                    } else if (chave == 4) {
                         System.out.println("\n\n\nsalve salve\n\n\n");
                     } else {
                         System.out.println("\n sala trancada \n");
                     }
                     break;
                 case 'b':
+                    chave = ValidaChave(trancou);
                     if (trancou[1][1] < 1) {
                         trancou[1][1]++;
-                        chaves++;
-                        System.out.println("***"+chaves+"***");
                         salaFundamentos();
-                    } else if (chaves == 4) {
+                    } else if (chave == 4) {
                         System.out.println("\n\n\nsalve salve\n\n\n");
                     } else {
                         System.out.println("\n sala trancada \n");
                     }
                     break;
                 case 'c':
-                    volta(trancou, chaves);
+                    volta(trancou, chave);
                     break;
                 default:
                     System.out.print("Você possui somente duas opções, ir para ConceitosDeComputacao ou para Algoritmos.\n Digite qual sala você deseja entrar: ");
@@ -640,4 +663,3 @@ public static void ContaHistoria(int [][]trancou, int chaves) {
         System.out.print("\n");
     }
 }
-
