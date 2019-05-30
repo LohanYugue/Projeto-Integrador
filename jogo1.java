@@ -1,9 +1,6 @@
-package jogo;
-
+package javaapplication1;
 import java.util.Scanner;
-
-public class jogo2 {
-
+public class NewClass {
     static Scanner leitor = new Scanner(System.in);
     static int soma = 5;
     static char opcao;
@@ -333,18 +330,18 @@ public static void ContaHistoria(int [][]trancou, int chaves) {
         do {
             System.out.println("*******Questão 2*******");
             System.out.println("Qual das formas a seguir apresenta a escrita de uma função:");
-            System.out.println("(a)import java.util.Scanner\n(b)System.out.println();\n(c)static void (String x) {}\n(d)switch (opção) {}");
+            System.out.println("(a)import java.util.Scanner\n(b)System.out.println();\n(c)public static void main {}\n(d)switch (opção) {}");
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase().charAt(0);
 
             opcaoInvalida();
 
-            if (opcao == 'b') {
+            if (opcao == 'c') {
                 acertou();
-            } else if ((opcao == 'd') || (opcao == 'c') || (opcao == 'a')) {
+            } else if ((opcao == 'd') || (opcao == 'b') || (opcao == 'a')) {
                 errou();
             }
-        } while (opcao != 'b');
+        } while (opcao != 'c');
 
         //Questão 3
         do {
@@ -366,8 +363,8 @@ public static void ContaHistoria(int [][]trancou, int chaves) {
         //Questão 4
         do {
             System.out.println("*******Questão 4*******");
-            System.out.println("RESPOSTA CORRETA B");
-            System.out.println("(a)254\n(b)260\n(c)256\n(d)512");
+            System.out.println("Qual das alternativas a seguir apresenta a forma correta de iniciar um vetor?");
+            System.out.println("(a)import java.util.Scanner\n(b)float [] notas = {6.5, 7.0, 5.5, 9.0, 2.5};\n(c)public static void main\n(d)switch (opção) {}");
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase().charAt(0);
 
@@ -383,8 +380,8 @@ public static void ContaHistoria(int [][]trancou, int chaves) {
         //Questão 5
         do {
             System.out.println("*******Questão 5*******");
-            System.out.println("RESPOSTA CORRETA A");
-            System.out.println("(a)+\n(b)*\n(c)-\n(d)/");
+            System.out.println("qual das alternativas demonstra como declarar um matriz tridimensional");
+            System.out.println("(a)int [][][] m = new int[2][4][7];\n(b)public static void\n(c)System.out.println\n(d)int [][] m = new int[8][8];");
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase().charAt(0);
 
