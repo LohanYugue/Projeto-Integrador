@@ -23,9 +23,8 @@ public class jogo {
             System.out.println("***********");
             System.out.println("(A) Jogar");
             System.out.println("(B) Instruções");
-            System.out.println("(C) Recorde");
-            System.out.println("(D) Créditos");
-            System.out.println("(E) Sair");
+            System.out.println("(C) Créditos");
+            System.out.println("(D) Sair");
             System.out.println("***********");
             PulaUmaLinha();
             System.out.print("Digite a opção desejada: ");
@@ -38,18 +37,15 @@ public class jogo {
                     instrucoes();
                     break;
                 case 'c':
-                    recorde();
-                    break;
-                case 'd':
                     creditos();
                     break;
-                case 'e':
+                case 'd':
                     System.out.println("Você Saiu!");
                     break;
                 default:
                     System.out.println("Opção inválida!");
             }
-        } while (opcao != 'e');
+        } while (opcao != 'd');
     }
 
     static void controladora() {
@@ -119,35 +115,30 @@ public class jogo {
         validaCorredor(trancou, chave);
     }
 
+// Função responsável por ler cada sala como matriz e iniciar o valor como 0.
     static int[][] tranca() {
-        int[][] tranca = new int[3][2];
+        int[][] tranca = new int[2][2];
         tranca[0][0] = 0;
         tranca[0][1] = 0;
         tranca[1][0] = 0;
         tranca[1][1] = 0;
-        tranca[2][0] = 0;
-        tranca[2][1] = 0;
         return (tranca);
     }
 
+// Função responsável por validar se a soma do vetor da função "tranca" for igual a 4, caso sim, o jogador será direcionado para a última sala de forma automática
     static int ValidaChave(int[][] trancou) {
         int junta = 0;
         int chave;
         for (int i = 0; i < trancou.length; i++) {
             for (int j = 0; j < trancou[i].length; j++) {
                 junta += trancou[i][j];
-                //System.out.println(i);
-                //System.out.println("j" + j);
-                //System.out.println("junta" + junta);
             }
         }
-        //System.out.println("junta 2 : " + junta);
         if (junta == 4) {
             chave = 4;
         } else {
             chave = 0;
         }
-        //System.out.println("chave " + chave);
         return chave;
     }
 
@@ -160,7 +151,7 @@ public class jogo {
                     + "(c) sair deste corredor e voltar para a entrada principal que está trancada\n"
                     + "Onde você deseja ir? ");
             escolha = leitor.nextLine().toLowerCase().charAt(0);
-
+            
             switch (escolha) {
                 case 'a':
                     chave = ValidaChave(trancou);
@@ -605,94 +596,13 @@ public class jogo {
     }
     
     public static void salaFinal() {
-
-        //Questão 1   
-        do {
-            System.out.println("***SALA FINAL***");
-            System.out.println("*******Questão 1*******");
-            System.out.println("Qual das alternativas demonstra apenas estruturas de repetição:");
-            System.out.println("(a)while, if, if else\n(b)while, else, scanner\n(c)if, else if, else\n(d)while, do, do while");
-            System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
-
-            opcaoInvalida();
-
-            if (opcao == 'd') {
-                acertou();
-            } else if ((opcao == 'b') || (opcao == 'a') || (opcao == 'c')) {
-                fatality();
-            }
-        } while (opcao != 'd');
-
-        //Questão 2
-        do {
-            System.out.println("*******Questão 2*******");
-            System.out.println("Qual das formas a seguir apresenta a escrita de uma função:");
-            System.out.println("(a)import java.util.Scanner\n(b)System.out.println();\n(c)public static void main {}\n(d)switch (opção) {}");
-            System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
-
-            opcaoInvalida();
-
-            if (opcao == 'c') {
-                acertou();
-            } else if ((opcao == 'd') || (opcao == 'b') || (opcao == 'a')) {
-                fatality();
-            }
-        } while (opcao != 'c');
-
-        //Questão 3
-        do {
-            System.out.println("*******Questão 3*******");
-            System.out.println("Qual das alternativas mostra apenas estruturas de decisão:");
-            System.out.println("(a)while, if, System.out.println();\n(b)if, else, else if\n(c)while, do, switch\n(d)if, else, do");
-            System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
-
-            opcaoInvalida();
-
-            if (opcao == 'b') {
-                acertou();
-            } else if ((opcao == 'c') || (opcao == 'd') || (opcao == 'a')) {
-                fatality();
-            }
-        } while (opcao != 'b');
-
-        //Questão 4
-        do {
-            System.out.println("*******Questão 4*******");
-            System.out.println("Qual das alternativas a seguir apresenta a forma correta de iniciar um vetor?");
-            System.out.println("(a)import java.util.Scanner\n(b)float [] notas = {6.5, 7.0, 5.5, 9.0, 2.5};\n(c)public static void main\n(d)switch (opção) {}");
-            System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
-
-            opcaoInvalida();
-
-            if (opcao == 'b') {
-                acertou();
-            } else if ((opcao == 'd') || (opcao == 'c') || (opcao == 'a')) {
-                fatality();
-            }
-        } while (opcao != 'b');
-
-        //Questão 5
-        do {
-            System.out.println("*******Questão 5*******");
-            System.out.println("qual das alternativas demonstra como declarar um matriz tridimensional");
-            System.out.println("(a)int [][][] m = new int[2][4][7];\n(b)public static void\n(c)System.out.println\n(d)int [][] m = new int[8][8];");
-            System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
-
-            opcaoInvalida();
-
-            if (opcao == 'a') {
-                acertou();
-                System.out.println("Parabéns, você completou todos os desafios desta sala.");
-
-            } else if ((opcao == 'b') || (opcao == 'c') || (opcao == 'd')) {
-                fatality();
-            }
-        } while (opcao != 'a');
+        
+            System.out.println("***FINAL***");
+            System.out.println("*******************");
+            System.out.println("Após sair da última sala e juntar os 4 emblemas, você encontrou a tão procurada pedra com poderes curativos mágicos.\n"
+                    + "Você se aproxima do portão da entrada, encaixa os 4 emblemas nele e então a porta se abre.\n"
+                    + "Retorna a sua casa e percebe que sua mãe já havia falecido durante sua ausência :´( \n"
+                    + "FIM!");
 
     }
 
@@ -703,17 +613,17 @@ public class jogo {
                 + "Para ganhar o jogo é necessário coletar todos os emblemas e obter a pedra mágica para assim sair da escola");
     }
 
-    public static void recorde() {
-        System.out.println("O maior recorde atual foi de " + soma + " pontos!");
-    }
-
     public static void creditos() {
         System.out.println("Alexandre dos Santos Mignon\n"
                 + "Stelvio Henrique Ignazio Barboza\n"
                 + "Keli Cristiane Vido\n"
                 + "Ana Marta de Brito Borges Avelas de Araujo\n"
                 + "Leonildo Carnevalli Junior\n"
-                + "Raul Dias Paiva Junior");
+                + "Raul Dias Paiva Junior\n"
+                + "Lohan Yochinori Petermann Yugue\n"
+                + "Rubens Liparelli Ricci\n"
+                + "Lukas Matias Peireira\n"
+                + "Leonardo Piccolo Motta");
     }
 
 // Função responsável por validar a alternativa que o jogador escolheu, caso seja diferente das que ele possui, irá pedir para escolher novamente
@@ -750,7 +660,7 @@ public class jogo {
         PulaUmaLinha();
     }
     
-//Função respomsável por zerar a pontuação do jogador caso ele erre qualquer questão da sala final!
+//Função responsável por zerar a pontuação do jogador caso ele erre qualquer questão da sala final!
     public static void fatality() {
         soma = soma - soma;
        
