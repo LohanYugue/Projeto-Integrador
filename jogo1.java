@@ -1,8 +1,8 @@
-package javaapplication1;
+package jogo;
 
 import java.util.Scanner;
 
-public class jogo2 {
+public class jogo {
 
     static Scanner leitor = new Scanner(System.in);
     static int soma = 5;
@@ -136,18 +136,18 @@ public class jogo2 {
         for (int i = 0; i < trancou.length; i++) {
             for (int j = 0; j < trancou[i].length; j++) {
                 junta += trancou[i][j];
-                System.out.println(i);
-                System.out.println("j" + j);
-                System.out.println("junta" + junta);
+                //System.out.println(i);
+                //System.out.println("j" + j);
+                //System.out.println("junta" + junta);
             }
         }
-        System.out.println("junta 2 : " + junta);
+        //System.out.println("junta 2 : " + junta);
         if (junta == 4) {
             chave = 4;
         } else {
             chave = 0;
         }
-        System.out.println("chave " + chave);
+        //System.out.println("chave " + chave);
         return chave;
     }
 
@@ -168,7 +168,7 @@ public class jogo2 {
                         trancou[0][0]++;
                         salaConceitosComputacao();
                     } else if (chave == 4) {
-                        System.out.println("\n\n\nsalve salve\n\n\n");
+                         salaFinal();
                     } else {
                         System.out.println("\n sala trancada \n");
                     }
@@ -179,7 +179,7 @@ public class jogo2 {
                         trancou[0][1]++;
                         salaAlgoritmos();
                     } else if (chave == 4) {
-                        System.out.println("\n\n\nsalve salve\n\n\n");
+                        salaFinal();
                     } else {
                         System.out.println("\n sala trancada \n");
                     }
@@ -211,7 +211,7 @@ public class jogo2 {
                         trancou[1][0]++;
                         salaPreCalculo();
                     } else if (chave == 4) {
-                        System.out.println("\n\n\nsalve salve\n\n\n");
+                        salaFinal();
                     } else {
                         System.out.println("\n sala trancada \n");
                     }
@@ -222,7 +222,7 @@ public class jogo2 {
                         trancou[1][1]++;
                         salaFundamentos();
                     } else if (chave == 4) {
-                        System.out.println("\n\n\nsalve salve\n\n\n");
+                        salaFinal();
                     } else {
                         System.out.println("\n sala trancada \n");
                     }
@@ -603,6 +603,98 @@ public class jogo2 {
         } while (opcao != 'a');
 
     }
+    
+    public static void salaFinal() {
+
+        //Questão 1   
+        do {
+            System.out.println("***SALA FINAL***");
+            System.out.println("*******Questão 1*******");
+            System.out.println("Qual das alternativas demonstra apenas estruturas de repetição:");
+            System.out.println("(a)while, if, if else\n(b)while, else, scanner\n(c)if, else if, else\n(d)while, do, do while");
+            System.out.print("Escolha a alternativa correta: ");
+            opcao = leitor.nextLine().toLowerCase().charAt(0);
+
+            opcaoInvalida();
+
+            if (opcao == 'd') {
+                acertou();
+            } else if ((opcao == 'b') || (opcao == 'a') || (opcao == 'c')) {
+                fatality();
+            }
+        } while (opcao != 'd');
+
+        //Questão 2
+        do {
+            System.out.println("*******Questão 2*******");
+            System.out.println("Qual das formas a seguir apresenta a escrita de uma função:");
+            System.out.println("(a)import java.util.Scanner\n(b)System.out.println();\n(c)public static void main {}\n(d)switch (opção) {}");
+            System.out.print("Escolha a alternativa correta: ");
+            opcao = leitor.nextLine().toLowerCase().charAt(0);
+
+            opcaoInvalida();
+
+            if (opcao == 'c') {
+                acertou();
+            } else if ((opcao == 'd') || (opcao == 'b') || (opcao == 'a')) {
+                fatality();
+            }
+        } while (opcao != 'c');
+
+        //Questão 3
+        do {
+            System.out.println("*******Questão 3*******");
+            System.out.println("Qual das alternativas mostra apenas estruturas de decisão:");
+            System.out.println("(a)while, if, System.out.println();\n(b)if, else, else if\n(c)while, do, switch\n(d)if, else, do");
+            System.out.print("Escolha a alternativa correta: ");
+            opcao = leitor.nextLine().toLowerCase().charAt(0);
+
+            opcaoInvalida();
+
+            if (opcao == 'b') {
+                acertou();
+            } else if ((opcao == 'c') || (opcao == 'd') || (opcao == 'a')) {
+                fatality();
+            }
+        } while (opcao != 'b');
+
+        //Questão 4
+        do {
+            System.out.println("*******Questão 4*******");
+            System.out.println("Qual das alternativas a seguir apresenta a forma correta de iniciar um vetor?");
+            System.out.println("(a)import java.util.Scanner\n(b)float [] notas = {6.5, 7.0, 5.5, 9.0, 2.5};\n(c)public static void main\n(d)switch (opção) {}");
+            System.out.print("Escolha a alternativa correta: ");
+            opcao = leitor.nextLine().toLowerCase().charAt(0);
+
+            opcaoInvalida();
+
+            if (opcao == 'b') {
+                acertou();
+            } else if ((opcao == 'd') || (opcao == 'c') || (opcao == 'a')) {
+                fatality();
+            }
+        } while (opcao != 'b');
+
+        //Questão 5
+        do {
+            System.out.println("*******Questão 5*******");
+            System.out.println("qual das alternativas demonstra como declarar um matriz tridimensional");
+            System.out.println("(a)int [][][] m = new int[2][4][7];\n(b)public static void\n(c)System.out.println\n(d)int [][] m = new int[8][8];");
+            System.out.print("Escolha a alternativa correta: ");
+            opcao = leitor.nextLine().toLowerCase().charAt(0);
+
+            opcaoInvalida();
+
+            if (opcao == 'a') {
+                acertou();
+                System.out.println("Parabéns, você completou todos os desafios desta sala.");
+
+            } else if ((opcao == 'b') || (opcao == 'c') || (opcao == 'd')) {
+                fatality();
+            }
+        } while (opcao != 'a');
+
+    }
 
     public static void instrucoes() {
         System.out.println("Para cada resposta correta você irá somar 2 pontos\n"
@@ -657,8 +749,19 @@ public class jogo2 {
         System.out.println("Você possui " + soma + " pontos!");
         PulaUmaLinha();
     }
+    
+//Função respomsável por zerar a pontuação do jogador caso ele erre qualquer questão da sala final!
+    public static void fatality() {
+        soma = soma - soma;
+       
+            PulaUmaLinha();
+            System.out.println("Opção incoreta! Você perdeu todos seus pontos.");
+            System.out.println("Seus pontos chegaram a " + soma + " você perdeu!");
+            System.exit(0);
+        
+    }
 
-    //Funcao q pula uma linha
+//Funcao q pula uma linha
     public static void PulaUmaLinha() {
         System.out.print("\n");
     }
