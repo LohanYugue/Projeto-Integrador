@@ -394,7 +394,7 @@ public class jogo {
         //Questão 5
         do {
             System.out.println("*******Questão 5*******");
-            System.out.println("qual das alternativas demonstra como declarar um matriz tridimensional");
+            System.out.println("qual das alternativas demonstra como declarar uma matriz tridimensional");
             System.out.println("(a)int [][][] m = new int[2][4][7];\n(b)public static void\n(c)System.out.println\n(d)int [][] m = new int[8][8];");
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
