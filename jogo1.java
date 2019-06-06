@@ -6,7 +6,7 @@ public class jogo {
 
     static Scanner leitor = new Scanner(System.in);
     static int soma = 5;
-    static char opcao;
+    static String opcao;
 
     public static void main(String[] args) {
         menu();
@@ -28,24 +28,24 @@ public class jogo {
             System.out.println("***********");
             PulaUmaLinha();
             System.out.print("Digite a opção desejada: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            opcao = leitor.nextLine().toLowerCase();
             switch (opcao) {
-                case 'a':
+                case "a":
                     controladora();
                     break;
-                case 'b':
+                case "b":
                     instrucoes();
                     break;
-                case 'c':
+                case "c":
                     creditos();
                     break;
-                case 'd':
+                case "d":
                     System.out.println("Você Saiu!");
                     break;
                 default:
                     System.out.println("Opção inválida!");
             }
-        } while (opcao != 'd');
+        } while (opcao != "d");
     }
 
     static void controladora() {
@@ -78,12 +78,12 @@ public class jogo {
                 + "Há algo gravado na porta dizendo .....\n"
                 + "*****************************\n"
                 + "*****************************\n"
-                + "Para sair, encontre os 5 emblemas.\n"
+                + "Para sair, encontre os 4 emblemas.\n"
                 + "*****************************\n"
                 + "*****************************\n"
-                + "Olha com mais atenção na porta e percebe que há 5 espaços com formato octogonal vazios, como se faltasse algo!\n"
+                + "Olha com mais atenção na porta e percebe que há 4 espaços com formato octogonal vazios, como se faltasse algo!\n"
                 + "Você precisa encontrar a pedra mágica e os cinco emblemas para salvar sua mãe!\n"
-                + "Há dois corredores para seguir\n");
+                + "\nHá dois corredores para seguir\n");
 
         int chave = ValidaChave(trancou);
         validaCorredor(trancou, chave);
@@ -91,18 +91,18 @@ public class jogo {
     }
 
     public static void validaCorredor(int[][] trancou, int chave) {
-        System.out.print("\nEsquerda\n" + "Direita\n" + "Qual você deseja seguir?");
+        System.out.print("\n(a) Esquerda\n(b) Direita\nQual você deseja seguir?");
         String escolha = leitor.nextLine().toLowerCase();
         PulaUmaLinha();
-        while (!escolha.equals("esquerda") && !escolha.equals("direita")) {
-            System.out.print("Você possui somente duas opções, ir para direita ou para esquerda.\n Digite a direção que deseja seguir: ");
+        while (!escolha.equals("a") && !escolha.equals("b")) {
+            System.out.print("Você possui somente duas opções\n(a) Esquerda\n(b) Direita\nQual você deseja seguir?");
             escolha = leitor.nextLine().toLowerCase();
         }
         switch (escolha) {
-            case "esquerda":
+            case "a":
                 esquerda(trancou, chave);
                 break;
-            case "direita":
+            case "b":
                 direita(trancou, chave);
                 break;
             default:
@@ -143,28 +143,28 @@ public class jogo {
     }
 
     static int[][] esquerda(int[][] trancou, int chave) {
-        char escolha;
+        String escolha;
         do {
-            System.out.print("Você segue em direção ao corredor da esquerda e há duas salas com a descrição.\n"
+            System.out.print("\nVocê segue em direção ao corredor da esquerda e há duas salas com a descrição.\n"
                     + "(a) ConceitosDeComputacao\n"
                     + "(b) Algoritmos\n"
                     + "(c) sair deste corredor e voltar para a entrada principal que está trancada\n"
                     + "Onde você deseja ir? ");
-            escolha = leitor.nextLine().toLowerCase().charAt(0);
-            
+            escolha = leitor.nextLine().toLowerCase();
+
             switch (escolha) {
-                case 'a':
+                case "a":
                     chave = ValidaChave(trancou);
                     if (trancou[0][0] < 1) {
                         trancou[0][0]++;
                         salaConceitosComputacao();
                     } else if (chave == 4) {
-                         salaFinal();
+                        salaFinal();
                     } else {
                         System.out.println("\n sala trancada \n");
                     }
                     break;
-                case 'b':
+                case "b":
                     chave = ValidaChave(trancou);
                     if (trancou[0][1] < 1) {
                         trancou[0][1]++;
@@ -175,28 +175,28 @@ public class jogo {
                         System.out.println("\n sala trancada \n");
                     }
                     break;
-                case 'c':
+                case "c":
                     volta(trancou, chave);
                     break;
                 default:
                     System.out.print("Você possui somente duas opções, ir para ConceitosDeComputacao ou para Algoritmos.\n Digite qual sala você deseja entrar: ");
-                    escolha = leitor.nextLine().toLowerCase().charAt(0);
+                    escolha = leitor.nextLine().toLowerCase();
             }
-        } while (escolha != ('c'));
+        } while (escolha != ("c"));
         return (trancou);
     }
 
     static int[][] direita(int[][] trancou, int chave) {
-        char escolha;
+        String escolha;
         do {
-            System.out.print("Você segue em direção ao corredor da direita e há duas salas com a descrição.\n"
+            System.out.print("\nVocê segue em direção ao corredor da direita e há duas salas com a descrição.\n"
                     + "(a) PreCalculo\n"
                     + "(b) FundamentosdeADM\n"
                     + "(c) sair deste corredor e voltar para a entrada principal que está trancada\n"
                     + "Onde você deseja ir? ");
-            escolha = leitor.nextLine().toLowerCase().charAt(0);
+            escolha = leitor.nextLine().toLowerCase();
             switch (escolha) {
-                case 'a':
+                case "a":
                     chave = ValidaChave(trancou);
                     if (trancou[1][0] < 1) {
                         trancou[1][0]++;
@@ -207,7 +207,7 @@ public class jogo {
                         System.out.println("\n sala trancada \n");
                     }
                     break;
-                case 'b':
+                case "b":
                     chave = ValidaChave(trancou);
                     if (trancou[1][1] < 1) {
                         trancou[1][1]++;
@@ -218,14 +218,14 @@ public class jogo {
                         System.out.println("\n sala trancada \n");
                     }
                     break;
-                case 'c':
+                case "c":
                     volta(trancou, chave);
                     break;
                 default:
                     System.out.print("Você possui somente duas opções, ir para ConceitosDeComputacao ou para Algoritmos.\n Digite qual sala você deseja entrar: ");
-                    escolha = leitor.nextLine().toLowerCase().charAt(0);
+                    escolha = leitor.nextLine().toLowerCase();
             }
-        } while (escolha != ('c'));
+        } while (escolha != ("c"));
         return (trancou);
     }
 
@@ -238,16 +238,16 @@ public class jogo {
             System.out.println("O resultado da multiplicação dos números decimais 3 e 4  pode ser representado em hexadecimal pela letra:");
             System.out.println("(a)B\n(b)F\n(c)C\n(d)A");
             System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            opcao = leitor.nextLine().toLowerCase();
 
             opcaoInvalida();
 
-            if (opcao == 'c') {
+            if (opcao.equals ("c")) {
                 acertou();
-            } else if ((opcao == 'b') || (opcao == 'a') || (opcao == 'd')) {
+            } else if ((opcao.equals ("b")) || (opcao.equals("a")) || (opcao.equals("d"))) {
                 errou();
             }
-        } while (opcao != 'c' && soma != 0);
+        } while (!opcao.equals ("c"));
 
         //Questão 2
         do {
@@ -255,16 +255,16 @@ public class jogo {
             System.out.println("A função “NÃO E” também pode ser escrita da seguinte forma:");
             System.out.println("(a)AND\n(b)NOR\n(c)OR\n(d)NAND");
             System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            opcao = leitor.nextLine().toLowerCase();
 
             opcaoInvalida();
 
-            if (opcao == 'd') {
+            if (opcao.equals ("d")) {
                 acertou();
-            } else if ((opcao == 'b') || (opcao == 'c') || (opcao == 'a')) {
+            } else if ((opcao.equals ("b")) || (opcao.equals ("c")) || (opcao.equals ("a"))) {
                 errou();
             }
-        } while (opcao != 'd');
+        } while (!opcao.equals ("d"));
 
         //Questão 3
         do {
@@ -272,16 +272,16 @@ public class jogo {
             System.out.println("Qual símbolo representa a função AND/E ?");
             System.out.println("(a)+\n(b)-\n(c)*\n(d)/");
             System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            opcao = leitor.nextLine().toLowerCase();
 
             opcaoInvalida();
 
-            if (opcao == 'c') {
+            if (opcao.equals ("c")) {
                 acertou();
-            } else if ((opcao == 'b') || (opcao == 'd') || (opcao == 'a')) {
+            } else if ((opcao.equals ("b")) || (opcao.equals ("d")) || (opcao.equals ("a"))) {
                 errou();
             }
-        } while (opcao != 'c');
+        } while (!opcao.equals("c"));
 
         //Questão 4
         do {
@@ -289,16 +289,16 @@ public class jogo {
             System.out.println("Quanto vale em decimal o número binário 100000100?");
             System.out.println("(a)254\n(b)260\n(c)256\n(d)512");
             System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            opcao = leitor.nextLine().toLowerCase();
 
             opcaoInvalida();
 
-            if (opcao == 'b') {
+            if (opcao.equals ("b")) {
                 acertou();
-            } else if ((opcao == 'd') || (opcao == 'c') || (opcao == 'a')) {
+            } else if ((opcao.equals ("d")) || (opcao.equals ("c")) || (opcao.equals ("a"))) {
                 errou();
             }
-        } while (opcao != 'b');
+        } while (!opcao.equals ("b"));
 
         //Questão 5
         do {
@@ -306,17 +306,17 @@ public class jogo {
             System.out.println("Qual símbolo representa a função OR/OU ?");
             System.out.println("(a)+\n(b)*\n(c)-\n(d)/");
             System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            opcao = leitor.nextLine().toLowerCase();
 
             opcaoInvalida();
 
-            if (opcao == 'a') {
+            if (opcao.equals ("a")) {
                 acertou();
                 System.out.println("Parabéns, você completou todos os desafios desta sala.");
-            } else if ((opcao == 'b') || (opcao == 'c') || (opcao == 'd')) {
+            } else if ((opcao.equals ("b")) || (opcao.equals ("c")) || (opcao.equals ("d"))) {
                 errou();
             }
-        } while (opcao != 'a');
+        } while (!opcao.equals ("a"));
 
     }
 
@@ -329,16 +329,16 @@ public class jogo {
             System.out.println("Qual das alternativas demonstra apenas estruturas de repetição:");
             System.out.println("(a)while, if, if else\n(b)while, else, scanner\n(c)if, else if, else\n(d)while, do, do while");
             System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            opcao = leitor.nextLine().toLowerCase();
 
             opcaoInvalida();
 
-            if (opcao == 'd') {
+            if (opcao.equals ("d")) {
                 acertou();
-            } else if ((opcao == 'b') || (opcao == 'a') || (opcao == 'c')) {
+            } else if ((opcao.equals ("b")) || (opcao.equals ("a")) || (opcao.equals ("c"))) {
                 errou();
             }
-        } while (opcao != 'd');
+        } while (!opcao.equals ("d"));
 
         //Questão 2
         do {
@@ -346,16 +346,16 @@ public class jogo {
             System.out.println("Qual das formas a seguir apresenta a escrita de uma função:");
             System.out.println("(a)import java.util.Scanner\n(b)System.out.println();\n(c)public static void main {}\n(d)switch (opção) {}");
             System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            opcao = leitor.nextLine().toLowerCase();
 
             opcaoInvalida();
 
-            if (opcao == 'c') {
+            if (opcao.equals ("c")) {
                 acertou();
-            } else if ((opcao == 'd') || (opcao == 'b') || (opcao == 'a')) {
+            } else if ((opcao.equals ("d")) || (opcao.equals ("b")) || (opcao.equals ("a"))) {
                 errou();
             }
-        } while (opcao != 'c');
+        } while (!opcao.equals ("c"));
 
         //Questão 3
         do {
@@ -363,16 +363,16 @@ public class jogo {
             System.out.println("Qual das alternativas mostra apenas estruturas de decisão:");
             System.out.println("(a)while, if, System.out.println();\n(b)if, else, else if\n(c)while, do, switch\n(d)if, else, do");
             System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            opcao = leitor.nextLine().toLowerCase();
 
             opcaoInvalida();
 
-            if (opcao == 'b') {
+            if (opcao.equals ("b")) {
                 acertou();
-            } else if ((opcao == 'c') || (opcao == 'd') || (opcao == 'a')) {
+            } else if ((opcao.equals ("c")) || (opcao.equals ("d")) || (opcao.equals ("a"))) {
                 errou();
             }
-        } while (opcao != 'b');
+        } while (!opcao.equals ("b"));
 
         //Questão 4
         do {
@@ -380,16 +380,16 @@ public class jogo {
             System.out.println("Qual das alternativas a seguir apresenta a forma correta de iniciar um vetor?");
             System.out.println("(a)import java.util.Scanner\n(b)float [] notas = {6.5, 7.0, 5.5, 9.0, 2.5};\n(c)public static void main\n(d)switch (opção) {}");
             System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            opcao = leitor.nextLine().toLowerCase();
 
             opcaoInvalida();
 
-            if (opcao == 'b') {
+            if (opcao.equals ("b")) {
                 acertou();
-            } else if ((opcao == 'd') || (opcao == 'c') || (opcao == 'a')) {
+            } else if ((opcao.equals ("d")) || (opcao.equals ("c")) || (opcao.equals ("a"))) {
                 errou();
             }
-        } while (opcao != 'b');
+        } while (!opcao.equals ("b"));
 
         //Questão 5
         do {
@@ -397,18 +397,18 @@ public class jogo {
             System.out.println("qual das alternativas demonstra como declarar um matriz tridimensional");
             System.out.println("(a)int [][][] m = new int[2][4][7];\n(b)public static void\n(c)System.out.println\n(d)int [][] m = new int[8][8];");
             System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            opcao = leitor.nextLine().toLowerCase();
 
             opcaoInvalida();
 
-            if (opcao == 'a') {
+            if (opcao.equals ("a")) {
                 acertou();
                 System.out.println("Parabéns, você completou todos os desafios desta sala.");
 
-            } else if ((opcao == 'b') || (opcao == 'c') || (opcao == 'd')) {
+            } else if ((opcao.equals ("b")) || (opcao.equals ("c")) || (opcao.equals ("d"))) {
                 errou();
             }
-        } while (opcao != 'a');
+        } while (!opcao.equals ("a"));
 
     }
 
@@ -424,16 +424,16 @@ public class jogo {
                     + "Os autores da escola clássica, responsável por sistematizar à administração, no século XX foram?");
             System.out.println("(a)Taylor, Ford e Max Webber\n(b)Ford, Taylor e Alexandre Magno\n(c)Dante, Ragnar e Pascoal\n(d)Ford e Taylor ");
             System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            opcao = leitor.nextLine().toLowerCase();
 
             opcaoInvalida();
 
-            if (opcao == 'a') {
+            if (opcao.equals ("a")) {
                 acertou();
-            } else if ((opcao == 'b') || (opcao == 'c') || (opcao == 'd')) {
+            } else if ((opcao.equals ("b")) || (opcao.equals ("c")) || (opcao.equals ("d"))) {
                 errou();
             }
-        } while (opcao != 'a');
+        } while (!opcao.equals ("a"));
 
         //Questão 2
         do {
@@ -441,16 +441,16 @@ public class jogo {
             System.out.println("De acordo com Graicunas, a formula para calcular o número total de relacionamentos é:");
             System.out.println("(a)D= B²-4*a*c\n(b)E= mc²\n(c)N(2n/2+n-1)\n(d)C= 2*II*R");
             System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            opcao = leitor.nextLine().toLowerCase();
 
             opcaoInvalida();
 
-            if (opcao == 'c') {
+            if (opcao.equals ("c")) {
                 acertou();
-            } else if ((opcao == 'b') || (opcao == 'd') || (opcao == 'a')) {
+            } else if ((opcao.equals ("b")) || (opcao.equals ("d")) || (opcao.equals ("a"))) {
                 errou();
             }
-        } while (opcao != 'c');
+        } while (!opcao.equals ("c"));
 
         //Questão 3
         do {
@@ -458,16 +458,16 @@ public class jogo {
             System.out.println("A palavra usada para indicar que a organização atinge seus objetivos é:");
             System.out.println("(a)Eficiência\n(b)Eficácia\n(c)Qualidade\n(d)Incompetência");
             System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            opcao = leitor.nextLine().toLowerCase();
 
             opcaoInvalida();
 
-            if (opcao == 'a') {
+            if (opcao.equals ("a")) {
                 acertou();
-            } else if ((opcao == 'b') || (opcao == 'd') || (opcao == 'c')) {
+            } else if ((opcao.equals ("b")) || (opcao.equals ("c")) || (opcao.equals ("d"))) {
                 errou();
             }
-        } while (opcao != 'a');
+        } while (!opcao.equals ("a"));
 
         //Questão 4
         do {
@@ -475,16 +475,16 @@ public class jogo {
             System.out.println("Eliminação de desperdício e fabricação com qualidade são princípios mais importante do sistema:");
             System.out.println("(a)Operacional\n(b)Java\n(c)Toyota\n(d)Japonês");
             System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            opcao = leitor.nextLine().toLowerCase();
 
             opcaoInvalida();
 
-            if (opcao == 'd') {
+            if (opcao.equals ("d")) {
                 acertou();
-            } else if ((opcao == 'b') || (opcao == 'c') || (opcao == 'a')) {
+            } else if ((opcao.equals ("b")) || (opcao.equals ("c")) || (opcao.equals ("a"))) {
                 errou();
             }
-        } while (opcao != 'd');
+        } while (!opcao.equals ("d"));
 
         //Questão 5
         do {
@@ -492,17 +492,16 @@ public class jogo {
             System.out.println("Planejar, organizar, controlar, executar é o mesmo que Administração?");
             System.out.println("(a)Sim\n(b)Não\n(c)Talvez\n(d)Em alguns casos");
             System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            opcao = leitor.nextLine().toLowerCase();
 
             opcaoInvalida();
 
-            if (opcao == 'a') {
+            if (opcao.equals ("a")) {
                 acertou();
-                System.out.println("Parabéns, você completou todos os desafios desta sala.");
-            } else if ((opcao == 'b') || (opcao == 'c') || (opcao == 'd')) {
+            } else if ((opcao.equals ("b")) || (opcao.equals ("c")) || (opcao.equals ("d"))) {
                 errou();
             }
-        } while (opcao != 'a');
+        } while (!opcao.equals ("a"));
 
     }
 
@@ -515,14 +514,14 @@ public class jogo {
             System.out.println("A divisão de 1215 por -27 é igual a ?");
             System.out.println("(a)40\n(b)-45\n(c)-90\n(d)45");
             System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            opcao = leitor.nextLine().toLowerCase();
             opcaoInvalida();
-            if (opcao == 'b') {
+            if (opcao.equals ("b")) {
                 acertou();
-            } else if ((opcao == 'c') || (opcao == 'a') || (opcao == 'd')) {
+            } else if ((opcao.equals ("c")) || (opcao.equals ("a")) || (opcao.equals ("d"))) {
                 errou();
             }
-        } while (opcao != 'b' && soma != 0);
+        } while (!opcao.equals ("b"));
 
         //Questão 2
         do {
@@ -530,16 +529,16 @@ public class jogo {
             System.out.println("O resultado da fatoração de 2x²+2x+1 é igual a? ");
             System.out.println("(a)(y+1)²\n(b)x²\n(c)(x+1)²\n(d)1x²");
             System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            opcao = leitor.nextLine().toLowerCase();
 
             opcaoInvalida();
 
-            if (opcao == 'c') {
+            if (opcao.equals ("c")) {
                 acertou();
-            } else if ((opcao == 'b') || (opcao == 'd') || (opcao == 'a')) {
+            } else if ((opcao.equals ("b")) || (opcao.equals ("d")) || (opcao.equals ("a"))) {
                 errou();
             }
-        } while (opcao != 'c');
+        } while (!opcao.equals ("c"));
 
         //Questão 3
         do {
@@ -547,16 +546,16 @@ public class jogo {
             System.out.println("1680 representa 56% de um numero, qual é esse numero?");
             System.out.println("(a)3360\n(b)2000\n(c)3000\n(d)1680");
             System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            opcao = leitor.nextLine().toLowerCase();
 
             opcaoInvalida();
 
-            if (opcao == 'c') {
+            if (opcao.equals ("c")) {
                 acertou();
-            } else if ((opcao == 'b') || (opcao == 'd') || (opcao == 'a')) {
+            } else if ((opcao.equals ("b")) || (opcao.equals ("d")) || (opcao.equals ("a"))) {
                 errou();
             }
-        } while (opcao != 'c');
+        } while (!opcao.equals ("c"));
 
         //Questão 4
         do {
@@ -564,16 +563,16 @@ public class jogo {
             System.out.println("Qual a porcentagem em que 91 representa em 650?");
             System.out.println("(a)23%\n(b)13%\n(c)14%\n(d)19%");
             System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            opcao = leitor.nextLine().toLowerCase();
 
             opcaoInvalida();
 
-            if (opcao == 'c') {
+            if (opcao.equals ("c")) {
                 acertou();
-            } else if ((opcao == 'd') || (opcao == 'b') || (opcao == 'a')) {
+            } else if ((opcao.equals ("b")) || (opcao.equals ("d")) || (opcao.equals ("a"))) {
                 errou();
             }
-        } while (opcao != 'c');
+        } while (!opcao.equals ("c"));
 
         //Questão 5
         do {
@@ -581,94 +580,85 @@ public class jogo {
             System.out.println("Qual é o resultado da simplificação de 3x*(-x-1)-4(x²+x)?");
             System.out.println("(a)-7x²-7x\n(b)-6x²-6x\n(c)5x+6x²\n(d)-9x");
             System.out.print("Escolha a alternativa correta: ");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+            opcao = leitor.nextLine().toLowerCase();
 
             opcaoInvalida();
 
-            if (opcao == 'a') {
+            if (opcao.equals ("a")) {
                 acertou();
                 System.out.println("Parabéns, você completou todos os desafios desta sala.");
-            } else if ((opcao == 'b') || (opcao == 'c') || (opcao == 'd')) {
+            } else if ((opcao.equals ("b")) || (opcao.equals ("c")) || (opcao.equals ("d"))) {
                 errou();
             }
-        } while (opcao != 'a');
+        } while (!opcao.equals ("a"));
 
     }
-    
+
     public static void salaFinal() {
+
+        System.out.println("***FINAL***");
+        System.out.println("*******************");
+        System.out.println("Após sair da última sala e juntar os 4 emblemas, você encontrou a tão procurada pedra com poderes curativos mágicos.\n"
+                + "Você se aproxima do portão da entrada, encaixa os 4 emblemas nele e então a porta se abre.\n"
+                + "Retorna a sua casa e percebe que sua mãe já havia falecido durante sua ausência :´( \n"
+                + "FIM!");
         
-            System.out.println("***FINAL***");
-            System.out.println("*******************");
-            System.out.println("Após sair da última sala e juntar os 4 emblemas, você encontrou a tão procurada pedra com poderes curativos mágicos.\n"
-                    + "Você se aproxima do portão da entrada, encaixa os 4 emblemas nele e então a porta se abre.\n"
-                    + "Retorna a sua casa e percebe que sua mãe já havia falecido durante sua ausência :´( \n"
-                    + "FIM!");
+        menu();
 
     }
 
     public static void instrucoes() {
-        System.out.println("Para cada resposta correta você irá somar 2 pontos\n"
-                + "Para cada resposta incorreta você irá perder 1 pontos\n"
+        System.out.println("\nPara cada resposta correta você irá somar 1 ponto\n"
+                + "Para cada resposta incorreta você irá perder 2 pontos\n"
                 + "O jogo se inicia com um total de 5 pontos acumulados\n"
                 + "Para ganhar o jogo é necessário coletar todos os emblemas e obter a pedra mágica para assim sair da escola");
     }
 
     public static void creditos() {
-        System.out.println("Alexandre dos Santos Mignon\n"
+        System.out.println("\nLohan Yochinori Petermann Yugue\n"
+                + "Rubens Liparelli Ricci\n"
+                + "Lukas Matias Peireira\n"
+                + "Leonardo Piccolo Motta\n"
+                + "Alexandre dos Santos Mignon\n"
+                + "Leonildo Carnevalli Junior\n"
                 + "Stelvio Henrique Ignazio Barboza\n"
                 + "Keli Cristiane Vido\n"
                 + "Ana Marta de Brito Borges Avelas de Araujo\n"
-                + "Leonildo Carnevalli Junior\n"
-                + "Raul Dias Paiva Junior\n"
-                + "Lohan Yochinori Petermann Yugue\n"
-                + "Rubens Liparelli Ricci\n"
-                + "Lukas Matias Peireira\n"
-                + "Leonardo Piccolo Motta");
+                + "Raul Dias Paiva Junior");
     }
 
 // Função responsável por validar a alternativa que o jogador escolheu, caso seja diferente das que ele possui, irá pedir para escolher novamente
     public static void opcaoInvalida() {
-        while ((opcao != 'a') && (opcao != 'b') && (opcao != 'c') && (opcao != 'd')) {
-            System.out.println("Resposta inválida, favor informar novamente a resposta");
-            opcao = leitor.nextLine().toLowerCase().charAt(0);
+        while (!opcao.equals("a") && !opcao.equals("b") && !opcao.equals("c") && !opcao.equals("d")) {
+            System.out.print("Resposta inválida, favor informar novamente a resposta: ");
+            opcao = leitor.nextLine().toLowerCase();
         }
     }
 
-//Função responsável por subtrair um ponto caso o jogar erra uma questão. 
+//Função responsável por subtrair dois pontos caso o jogar erra uma questão. 
 //Se o total de pontos do jogador chegou a ZERO, a função encerrará o jogo.
     public static void errou() {
-        soma = soma - 1;
-        if (soma != 0) {
+        soma = soma - 2;
+        if (soma > 0) {
             PulaUmaLinha();
-            System.out.println("Opção incoreta! Você perdeu 1 ponto.");
+            System.out.println("Opção incoreta! Você perdeu 2 ponto.");
             System.out.println("Você possui " + soma + " pontos!");
             PulaUmaLinha();
         } else {
             PulaUmaLinha();
-            System.out.println("Opção incoreta! Você perdeu 1 ponto.");
+            System.out.println("Opção incoreta! Você perdeu 2 ponto.");
             System.out.println("Seus pontos chegaram a " + soma + " você perdeu!");
             System.exit(0);
         }
     }
 
-//Função responsável por somar dois pontos caso o jogador acerte a questão
+//Função responsável por somar um ponto caso o jogador acerte a questão
     public static void acertou() {
         PulaUmaLinha();
-        System.out.println("Opção correta! Parabéns você somou 2 pontos.");
-        soma = soma + 2;
+        System.out.println("Opção correta! Parabéns você somou 1 pontos.");
+        soma = soma + 1;
         System.out.println("Você possui " + soma + " pontos!");
         PulaUmaLinha();
-    }
-    
-//Função responsável por zerar a pontuação do jogador caso ele erre qualquer questão da sala final!
-    public static void fatality() {
-        soma = soma - soma;
-       
-            PulaUmaLinha();
-            System.out.println("Opção incoreta! Você perdeu todos seus pontos.");
-            System.out.println("Seus pontos chegaram a " + soma + " você perdeu!");
-            System.exit(0);
-        
     }
 
 //Funcao q pula uma linha
