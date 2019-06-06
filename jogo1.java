@@ -45,12 +45,14 @@ public class jogo {
                 default:
                     System.out.println("Opção inválida!");
             }
-        } while (opcao != "d");
+        } while (!opcao.equals ("d"));
     }
 
     static void controladora() {
+        soma=5;
         int[][] trancou = tranca();
         ContaHistoria(trancou);
+        
     }
 
     public static void ContaHistoria(int[][] trancou) {
@@ -179,10 +181,9 @@ public class jogo {
                     volta(trancou, chave);
                     break;
                 default:
-                    System.out.print("Você possui somente duas opções, ir para ConceitosDeComputacao ou para Algoritmos.\n Digite qual sala você deseja entrar: ");
-                    escolha = leitor.nextLine().toLowerCase();
+                    System.out.println("\nopção invalida!!");
             }
-        } while (escolha != ("c"));
+        } while (!escolha.equals ("c"));
         return (trancou);
     }
 
@@ -222,10 +223,9 @@ public class jogo {
                     volta(trancou, chave);
                     break;
                 default:
-                    System.out.print("Você possui somente duas opções, ir para ConceitosDeComputacao ou para Algoritmos.\n Digite qual sala você deseja entrar: ");
-                    escolha = leitor.nextLine().toLowerCase();
+                    System.out.println("\nopção invalida!!");
             }
-        } while (escolha != ("c"));
+        } while (!escolha.equals ("c"));
         return (trancou);
     }
 
@@ -312,7 +312,7 @@ public class jogo {
 
             if (opcao.equals ("a")) {
                 acertou();
-                System.out.println("Parabéns, você completou todos os desafios desta sala.");
+                System.out.println("Parabéns, você completou todos os desafios desta sala e encontrou um emblema!");
             } else if ((opcao.equals ("b")) || (opcao.equals ("c")) || (opcao.equals ("d"))) {
                 errou();
             }
@@ -343,19 +343,19 @@ public class jogo {
         //Questão 2
         do {
             System.out.println("*******Questão 2*******");
-            System.out.println("Qual das formas a seguir apresenta a escrita de uma função:");
+            System.out.println("Qual das formas a seguir apresenta a escrita de uma função que imprime:");
             System.out.println("(a)import java.util.Scanner\n(b)System.out.println();\n(c)public static void main {}\n(d)switch (opção) {}");
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
 
             opcaoInvalida();
 
-            if (opcao.equals ("c")) {
+            if (opcao.equals ("b")) {
                 acertou();
-            } else if ((opcao.equals ("d")) || (opcao.equals ("b")) || (opcao.equals ("a"))) {
+            } else if ((opcao.equals ("d")) || (opcao.equals ("c")) || (opcao.equals ("a"))) {
                 errou();
             }
-        } while (!opcao.equals ("c"));
+        } while (!opcao.equals ("b"));
 
         //Questão 3
         do {
@@ -403,7 +403,7 @@ public class jogo {
 
             if (opcao.equals ("a")) {
                 acertou();
-                System.out.println("Parabéns, você completou todos os desafios desta sala.");
+                System.out.println("Parabéns, você completou todos os desafios desta sala e encontrou um emblema!.");
 
             } else if ((opcao.equals ("b")) || (opcao.equals ("c")) || (opcao.equals ("d"))) {
                 errou();
@@ -498,6 +498,7 @@ public class jogo {
 
             if (opcao.equals ("a")) {
                 acertou();
+                System.out.println("Parabéns, você completou todos os desafios desta sala e encontrou um emblema!.");
             } else if ((opcao.equals ("b")) || (opcao.equals ("c")) || (opcao.equals ("d"))) {
                 errou();
             }
@@ -586,7 +587,7 @@ public class jogo {
 
             if (opcao.equals ("a")) {
                 acertou();
-                System.out.println("Parabéns, você completou todos os desafios desta sala.");
+                System.out.println("Parabéns, você completou todos os desafios desta sala e encontrou um emblema!.");
             } else if ((opcao.equals ("b")) || (opcao.equals ("c")) || (opcao.equals ("d"))) {
                 errou();
             }
@@ -646,7 +647,7 @@ public class jogo {
             PulaUmaLinha();
         } else {
             PulaUmaLinha();
-            System.out.println("Opção incoreta! Você perdeu 2 ponto.");
+            System.out.println("Opção incoreta! Você perdeu 2 pontos.");
             System.out.println("Seus pontos chegaram a " + soma + " você perdeu!");
             System.exit(0);
         }
@@ -655,7 +656,7 @@ public class jogo {
 //Função responsável por somar um ponto caso o jogador acerte a questão
     public static void acertou() {
         PulaUmaLinha();
-        System.out.println("Opção correta! Parabéns você somou 1 pontos.");
+        System.out.println("Opção correta! Parabéns você somou 1 ponto.");
         soma = soma + 1;
         System.out.println("Você possui " + soma + " pontos!");
         PulaUmaLinha();
