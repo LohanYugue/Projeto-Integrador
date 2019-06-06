@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class jogo {
 
     static Scanner leitor = new Scanner(System.in);
-    static String opcao;
+    //static String opcao;
 
     public static void main(String[] args) {
         menu();
@@ -13,6 +13,7 @@ public class jogo {
     }
 
     static void menu() {
+        String opcao;
         do {
             System.out.println(" ___                   _               _                                ");
             System.out.println("| __|  ___  __   ___  | |  __ _     __| |  ___     __   __ _   ___   ___");
@@ -30,7 +31,7 @@ public class jogo {
             opcao = leitor.nextLine().toLowerCase();
             switch (opcao) {
                 case "a":
-                    controladora();
+                    controladora(opcao);
                     break;
                 case "b":
                     instrucoes();
@@ -47,14 +48,14 @@ public class jogo {
         } while (!opcao.equals("d"));
     }
 
-    static void controladora() {
+    static void controladora(String opcao) {
         int[]pontos =ponto();
         int[][] trancou = tranca();
-        ContaHistoria(trancou, pontos);
+        ContaHistoria(trancou, pontos, opcao);
 
     }
 
-    public static void ContaHistoria(int[][] trancou, int[]pontos) {
+    public static void ContaHistoria(int[][] trancou, int[]pontos, String opcao) {
         System.out.print(" Bem vindo ao jogo RPG “Escola do Caos”,\n antes de mais nada, "
                 + "nos informe qual será seu nome neste jogo: ");
         String nome = leitor.nextLine().toUpperCase();
@@ -87,11 +88,11 @@ public class jogo {
                 + "\nHá dois corredores para seguir\n");
 
         int chave = ValidaChave(trancou);
-        validaCorredor(trancou, chave, pontos);
+        validaCorredor(trancou, chave, pontos, opcao);
 
     }
 
-    public static void validaCorredor(int[][] trancou, int chave, int[]pontos) {
+    public static void validaCorredor(int[][] trancou, int chave, int[]pontos, String opcao) {
         System.out.print("\n(a) Esquerda\n(b) Direita\nQual você deseja seguir?");
         String escolha = leitor.nextLine().toLowerCase();
         PulaUmaLinha();
@@ -101,19 +102,19 @@ public class jogo {
         }
         switch (escolha) {
             case "a":
-                esquerda(trancou, chave, pontos);
+                esquerda(trancou, chave, pontos, opcao);
                 break;
             case "b":
-                direita(trancou, chave, pontos);
+                direita(trancou, chave, pontos, opcao);
                 break;
             default:
                 System.out.println("Opção inválida!");
         }
     }
 
-    public static void volta(int[][] trancou, int chave, int[]pontos) {
+    public static void volta(int[][] trancou, int chave, int[]pontos, String opcao) {
         System.out.println("\nVoce voltou para a entrada principal e deve encontrar os emblemas que estão nos dois corredores");
-        validaCorredor(trancou, chave, pontos);
+        validaCorredor(trancou, chave, pontos, opcao);
     }
 
 // Função responsável por ler cada sala como matriz e iniciar o valor como 0.
@@ -143,7 +144,7 @@ public class jogo {
         return chave;
     }
 
-    static int[][] esquerda(int[][] trancou, int chave, int[]pontos) {
+    static int[][] esquerda(int[][] trancou, int chave, int[]pontos, String opcao) {
         String escolha;
         do {
             System.out.print("\nVocê segue em direção ao corredor da esquerda e há duas salas com a descrição.\n"
@@ -158,7 +159,7 @@ public class jogo {
                     chave = ValidaChave(trancou);
                     if (trancou[0][0] < 1) {
                         trancou[0][0]++;
-                        salaConceitosComputacao(pontos);
+                        salaConceitosComputacao(pontos, opcao);
                     } else if (chave == 4) {
                         salaFinal();
                     } else {
@@ -169,7 +170,7 @@ public class jogo {
                     chave = ValidaChave(trancou);
                     if (trancou[0][1] < 1) {
                         trancou[0][1]++;
-                        salaAlgoritmos(pontos);
+                        salaAlgoritmos(pontos, opcao);
                     } else if (chave == 4) {
                         salaFinal();
                     } else {
@@ -177,7 +178,7 @@ public class jogo {
                     }
                     break;
                 case "c":
-                    volta(trancou, chave, pontos);
+                    volta(trancou, chave, pontos, opcao);
                     break;
                 default:
                     System.out.println("\nopção invalida!!");
@@ -186,7 +187,7 @@ public class jogo {
         return (trancou);
     }
 
-    static int[][] direita(int[][] trancou, int chave, int[]pontos) {
+    static int[][] direita(int[][] trancou, int chave, int[]pontos, String opcao) {
         String escolha;
         do {
             System.out.print("\nVocê segue em direção ao corredor da direita e há duas salas com a descrição.\n"
@@ -200,7 +201,7 @@ public class jogo {
                     chave = ValidaChave(trancou);
                     if (trancou[1][0] < 1) {
                         trancou[1][0]++;
-                        salaPreCalculo(pontos);
+                        salaPreCalculo(pontos, opcao);
                     } else if (chave == 4) {
                         salaFinal();
                     } else {
@@ -211,7 +212,7 @@ public class jogo {
                     chave = ValidaChave(trancou);
                     if (trancou[1][1] < 1) {
                         trancou[1][1]++;
-                        salaFundamentos(pontos);
+                        salaFundamentos(pontos, opcao);
                     } else if (chave == 4) {
                         salaFinal();
                     } else {
@@ -219,7 +220,7 @@ public class jogo {
                     }
                     break;
                 case "c":
-                    volta(trancou, chave, pontos);
+                    volta(trancou, chave, pontos, opcao);
                     break;
                 default:
                     System.out.println("\nopção invalida!!");
@@ -228,7 +229,7 @@ public class jogo {
         return (trancou);
     }
 
-    public static void salaConceitosComputacao(int[]pontos) {
+    public static void salaConceitosComputacao(int[]pontos, String opcao) {
 
         //Questão 1   
         do {
@@ -239,7 +240,7 @@ public class jogo {
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
 
-            opcaoInvalida();
+            opcaoInvalida(opcao);
 
             if (opcao.equals("c")) {
                 acertou(pontos);
@@ -256,7 +257,7 @@ public class jogo {
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
 
-            opcaoInvalida();
+            opcaoInvalida(opcao);
 
             if (opcao.equals("d")) {
                 acertou(pontos);
@@ -273,7 +274,7 @@ public class jogo {
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
 
-            opcaoInvalida();
+            opcaoInvalida(opcao);
 
             if (opcao.equals("c")) {
                 acertou(pontos);
@@ -290,7 +291,7 @@ public class jogo {
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
 
-            opcaoInvalida();
+            opcaoInvalida(opcao);
 
             if (opcao.equals("b")) {
                 acertou(pontos);
@@ -307,7 +308,7 @@ public class jogo {
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
 
-            opcaoInvalida();
+            opcaoInvalida(opcao);
 
             if (opcao.equals("a")) {
                 acertou(pontos);
@@ -319,7 +320,7 @@ public class jogo {
 
     }
 
-    public static void salaAlgoritmos(int[]pontos) {
+    public static void salaAlgoritmos(int[]pontos, String opcao) {
 
         //Questão 1   
         do {
@@ -330,7 +331,7 @@ public class jogo {
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
 
-            opcaoInvalida();
+            opcaoInvalida(opcao);
 
             if (opcao.equals("d")) {
                 acertou(pontos);
@@ -347,7 +348,7 @@ public class jogo {
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
 
-            opcaoInvalida();
+            opcaoInvalida(opcao);
 
             if (opcao.equals("b")) {
                 acertou(pontos);
@@ -364,7 +365,7 @@ public class jogo {
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
 
-            opcaoInvalida();
+            opcaoInvalida(opcao);
 
             if (opcao.equals("b")) {
                 acertou(pontos);
@@ -381,7 +382,7 @@ public class jogo {
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
 
-            opcaoInvalida();
+            opcaoInvalida(opcao);
 
             if (opcao.equals("b")) {
                 acertou(pontos);
@@ -398,7 +399,7 @@ public class jogo {
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
 
-            opcaoInvalida();
+            opcaoInvalida(opcao);
 
             if (opcao.equals("a")) {
                 acertou(pontos);
@@ -411,7 +412,7 @@ public class jogo {
 
     }
 
-    public static void salaFundamentos(int[]pontos) {
+    public static void salaFundamentos(int[]pontos, String opcao) {
 
         //Questão 1   
         do {
@@ -425,7 +426,7 @@ public class jogo {
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
 
-            opcaoInvalida();
+            opcaoInvalida(opcao);
 
             if (opcao.equals("a")) {
                 acertou(pontos);
@@ -442,7 +443,7 @@ public class jogo {
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
 
-            opcaoInvalida();
+            opcaoInvalida(opcao);
 
             if (opcao.equals("c")) {
                 acertou(pontos);
@@ -459,7 +460,7 @@ public class jogo {
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
 
-            opcaoInvalida();
+            opcaoInvalida(opcao);
 
             if (opcao.equals("a")) {
                 acertou(pontos);
@@ -476,7 +477,7 @@ public class jogo {
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
 
-            opcaoInvalida();
+            opcaoInvalida(opcao);
 
             if (opcao.equals("d")) {
                 acertou(pontos);
@@ -493,7 +494,7 @@ public class jogo {
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
 
-            opcaoInvalida();
+            opcaoInvalida(opcao);
 
             if (opcao.equals("a")) {
                 acertou(pontos);
@@ -505,7 +506,7 @@ public class jogo {
 
     }
 
-    public static void salaPreCalculo(int[]pontos) {
+    public static void salaPreCalculo(int[]pontos,String opcao) {
 
         //Questão 1   
         do {
@@ -515,7 +516,7 @@ public class jogo {
             System.out.println("(a)40\n(b)-45\n(c)-90\n(d)45");
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
-            opcaoInvalida();
+            opcaoInvalida(opcao);
             if (opcao.equals("b")) {
                 acertou(pontos);
             } else if ((opcao.equals("c")) || (opcao.equals("a")) || (opcao.equals("d"))) {
@@ -531,7 +532,7 @@ public class jogo {
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
 
-            opcaoInvalida();
+            opcaoInvalida(opcao);
 
             if (opcao.equals("c")) {
                 acertou(pontos);
@@ -548,7 +549,7 @@ public class jogo {
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
 
-            opcaoInvalida();
+            opcaoInvalida(opcao);
 
             if (opcao.equals("c")) {
                 acertou(pontos);
@@ -565,7 +566,7 @@ public class jogo {
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
 
-            opcaoInvalida();
+            opcaoInvalida(opcao);
 
             if (opcao.equals("c")) {
                 acertou(pontos);
@@ -582,7 +583,7 @@ public class jogo {
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
 
-            opcaoInvalida();
+            opcaoInvalida(opcao);
 
             if (opcao.equals("a")) {
                 acertou(pontos);
@@ -628,10 +629,10 @@ public class jogo {
     }
 
 // Função responsável por validar a alternativa que o jogador escolheu, caso seja diferente das que ele possui, irá pedir para escolher novamente
-    public static void opcaoInvalida() {
-        while (!opcao.equals("a") && !opcao.equals("b") && !opcao.equals("c") && !opcao.equals("d")) {
-            System.out.print("Resposta inválida, favor informar novamente a resposta: ");
-            opcao = leitor.nextLine().toLowerCase();
+    public static void opcaoInvalida(String opcao) {
+        if (!opcao.equals("a") && !opcao.equals("b") && !opcao.equals("c") && !opcao.equals("d")) {
+            System.out.println("\nResposta inválida");
+            System.out.println(" ");
         }
     }
 
