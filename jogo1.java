@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class jogo {
 
     static Scanner leitor = new Scanner(System.in);
-    static int soma = 5;
     static String opcao;
 
     public static void main(String[] args) {
@@ -45,17 +44,17 @@ public class jogo {
                 default:
                     System.out.println("Opção inválida!");
             }
-        } while (!opcao.equals ("d"));
+        } while (!opcao.equals("d"));
     }
 
     static void controladora() {
-        soma=5;
+        int[]pontos =ponto();
         int[][] trancou = tranca();
-        ContaHistoria(trancou);
-        
+        ContaHistoria(trancou, pontos);
+
     }
 
-    public static void ContaHistoria(int[][] trancou) {
+    public static void ContaHistoria(int[][] trancou, int[]pontos) {
         System.out.print(" Bem vindo ao jogo RPG “Escola do Caos”,\n antes de mais nada, "
                 + "nos informe qual será seu nome neste jogo: ");
         String nome = leitor.nextLine().toUpperCase();
@@ -88,11 +87,11 @@ public class jogo {
                 + "\nHá dois corredores para seguir\n");
 
         int chave = ValidaChave(trancou);
-        validaCorredor(trancou, chave);
+        validaCorredor(trancou, chave, pontos);
 
     }
 
-    public static void validaCorredor(int[][] trancou, int chave) {
+    public static void validaCorredor(int[][] trancou, int chave, int[]pontos) {
         System.out.print("\n(a) Esquerda\n(b) Direita\nQual você deseja seguir?");
         String escolha = leitor.nextLine().toLowerCase();
         PulaUmaLinha();
@@ -102,19 +101,19 @@ public class jogo {
         }
         switch (escolha) {
             case "a":
-                esquerda(trancou, chave);
+                esquerda(trancou, chave, pontos);
                 break;
             case "b":
-                direita(trancou, chave);
+                direita(trancou, chave, pontos);
                 break;
             default:
                 System.out.println("Opção inválida!");
         }
     }
 
-    public static void volta(int[][] trancou, int chave) {
+    public static void volta(int[][] trancou, int chave, int[]pontos) {
         System.out.println("\nVoce voltou para a entrada principal e deve encontrar os emblemas que estão nos dois corredores");
-        validaCorredor(trancou, chave);
+        validaCorredor(trancou, chave, pontos);
     }
 
 // Função responsável por ler cada sala como matriz e iniciar o valor como 0.
@@ -144,7 +143,7 @@ public class jogo {
         return chave;
     }
 
-    static int[][] esquerda(int[][] trancou, int chave) {
+    static int[][] esquerda(int[][] trancou, int chave, int[]pontos) {
         String escolha;
         do {
             System.out.print("\nVocê segue em direção ao corredor da esquerda e há duas salas com a descrição.\n"
@@ -159,7 +158,7 @@ public class jogo {
                     chave = ValidaChave(trancou);
                     if (trancou[0][0] < 1) {
                         trancou[0][0]++;
-                        salaConceitosComputacao();
+                        salaConceitosComputacao(pontos);
                     } else if (chave == 4) {
                         salaFinal();
                     } else {
@@ -170,7 +169,7 @@ public class jogo {
                     chave = ValidaChave(trancou);
                     if (trancou[0][1] < 1) {
                         trancou[0][1]++;
-                        salaAlgoritmos();
+                        salaAlgoritmos(pontos);
                     } else if (chave == 4) {
                         salaFinal();
                     } else {
@@ -178,16 +177,16 @@ public class jogo {
                     }
                     break;
                 case "c":
-                    volta(trancou, chave);
+                    volta(trancou, chave, pontos);
                     break;
                 default:
                     System.out.println("\nopção invalida!!");
             }
-        } while (!escolha.equals ("c"));
+        } while (!escolha.equals("c"));
         return (trancou);
     }
 
-    static int[][] direita(int[][] trancou, int chave) {
+    static int[][] direita(int[][] trancou, int chave, int[]pontos) {
         String escolha;
         do {
             System.out.print("\nVocê segue em direção ao corredor da direita e há duas salas com a descrição.\n"
@@ -201,7 +200,7 @@ public class jogo {
                     chave = ValidaChave(trancou);
                     if (trancou[1][0] < 1) {
                         trancou[1][0]++;
-                        salaPreCalculo();
+                        salaPreCalculo(pontos);
                     } else if (chave == 4) {
                         salaFinal();
                     } else {
@@ -212,7 +211,7 @@ public class jogo {
                     chave = ValidaChave(trancou);
                     if (trancou[1][1] < 1) {
                         trancou[1][1]++;
-                        salaFundamentos();
+                        salaFundamentos(pontos);
                     } else if (chave == 4) {
                         salaFinal();
                     } else {
@@ -220,16 +219,16 @@ public class jogo {
                     }
                     break;
                 case "c":
-                    volta(trancou, chave);
+                    volta(trancou, chave, pontos);
                     break;
                 default:
                     System.out.println("\nopção invalida!!");
             }
-        } while (!escolha.equals ("c"));
+        } while (!escolha.equals("c"));
         return (trancou);
     }
 
-    public static void salaConceitosComputacao() {
+    public static void salaConceitosComputacao(int[]pontos) {
 
         //Questão 1   
         do {
@@ -242,12 +241,12 @@ public class jogo {
 
             opcaoInvalida();
 
-            if (opcao.equals ("c")) {
-                acertou();
-            } else if ((opcao.equals ("b")) || (opcao.equals("a")) || (opcao.equals("d"))) {
-                errou();
+            if (opcao.equals("c")) {
+                acertou(pontos);
+            } else if ((opcao.equals("b")) || (opcao.equals("a")) || (opcao.equals("d"))) {
+                errou(pontos);
             }
-        } while (!opcao.equals ("c"));
+        } while (!opcao.equals("c"));
 
         //Questão 2
         do {
@@ -259,12 +258,12 @@ public class jogo {
 
             opcaoInvalida();
 
-            if (opcao.equals ("d")) {
-                acertou();
-            } else if ((opcao.equals ("b")) || (opcao.equals ("c")) || (opcao.equals ("a"))) {
-                errou();
+            if (opcao.equals("d")) {
+                acertou(pontos);
+            } else if ((opcao.equals("b")) || (opcao.equals("c")) || (opcao.equals("a"))) {
+                errou(pontos);
             }
-        } while (!opcao.equals ("d"));
+        } while (!opcao.equals("d"));
 
         //Questão 3
         do {
@@ -276,10 +275,10 @@ public class jogo {
 
             opcaoInvalida();
 
-            if (opcao.equals ("c")) {
-                acertou();
-            } else if ((opcao.equals ("b")) || (opcao.equals ("d")) || (opcao.equals ("a"))) {
-                errou();
+            if (opcao.equals("c")) {
+                acertou(pontos);
+            } else if ((opcao.equals("b")) || (opcao.equals("d")) || (opcao.equals("a"))) {
+                errou(pontos);
             }
         } while (!opcao.equals("c"));
 
@@ -293,12 +292,12 @@ public class jogo {
 
             opcaoInvalida();
 
-            if (opcao.equals ("b")) {
-                acertou();
-            } else if ((opcao.equals ("d")) || (opcao.equals ("c")) || (opcao.equals ("a"))) {
-                errou();
+            if (opcao.equals("b")) {
+                acertou(pontos);
+            } else if ((opcao.equals("d")) || (opcao.equals("c")) || (opcao.equals("a"))) {
+                errou(pontos);
             }
-        } while (!opcao.equals ("b"));
+        } while (!opcao.equals("b"));
 
         //Questão 5
         do {
@@ -310,17 +309,17 @@ public class jogo {
 
             opcaoInvalida();
 
-            if (opcao.equals ("a")) {
-                acertou();
+            if (opcao.equals("a")) {
+                acertou(pontos);
                 System.out.println("Parabéns, você completou todos os desafios desta sala e encontrou um emblema!");
-            } else if ((opcao.equals ("b")) || (opcao.equals ("c")) || (opcao.equals ("d"))) {
-                errou();
+            } else if ((opcao.equals("b")) || (opcao.equals("c")) || (opcao.equals("d"))) {
+                errou(pontos);
             }
-        } while (!opcao.equals ("a"));
+        } while (!opcao.equals("a"));
 
     }
 
-    public static void salaAlgoritmos() {
+    public static void salaAlgoritmos(int[]pontos) {
 
         //Questão 1   
         do {
@@ -333,12 +332,12 @@ public class jogo {
 
             opcaoInvalida();
 
-            if (opcao.equals ("d")) {
-                acertou();
-            } else if ((opcao.equals ("b")) || (opcao.equals ("a")) || (opcao.equals ("c"))) {
-                errou();
+            if (opcao.equals("d")) {
+                acertou(pontos);
+            } else if ((opcao.equals("b")) || (opcao.equals("a")) || (opcao.equals("c"))) {
+                errou(pontos);
             }
-        } while (!opcao.equals ("d"));
+        } while (!opcao.equals("d"));
 
         //Questão 2
         do {
@@ -350,12 +349,12 @@ public class jogo {
 
             opcaoInvalida();
 
-            if (opcao.equals ("b")) {
-                acertou();
-            } else if ((opcao.equals ("d")) || (opcao.equals ("c")) || (opcao.equals ("a"))) {
-                errou();
+            if (opcao.equals("b")) {
+                acertou(pontos);
+            } else if ((opcao.equals("d")) || (opcao.equals("c")) || (opcao.equals("a"))) {
+                errou(pontos);
             }
-        } while (!opcao.equals ("b"));
+        } while (!opcao.equals("b"));
 
         //Questão 3
         do {
@@ -367,12 +366,12 @@ public class jogo {
 
             opcaoInvalida();
 
-            if (opcao.equals ("b")) {
-                acertou();
-            } else if ((opcao.equals ("c")) || (opcao.equals ("d")) || (opcao.equals ("a"))) {
-                errou();
+            if (opcao.equals("b")) {
+                acertou(pontos);
+            } else if ((opcao.equals("c")) || (opcao.equals("d")) || (opcao.equals("a"))) {
+                errou(pontos);
             }
-        } while (!opcao.equals ("b"));
+        } while (!opcao.equals("b"));
 
         //Questão 4
         do {
@@ -384,12 +383,12 @@ public class jogo {
 
             opcaoInvalida();
 
-            if (opcao.equals ("b")) {
-                acertou();
-            } else if ((opcao.equals ("d")) || (opcao.equals ("c")) || (opcao.equals ("a"))) {
-                errou();
+            if (opcao.equals("b")) {
+                acertou(pontos);
+            } else if ((opcao.equals("d")) || (opcao.equals("c")) || (opcao.equals("a"))) {
+                errou(pontos);
             }
-        } while (!opcao.equals ("b"));
+        } while (!opcao.equals("b"));
 
         //Questão 5
         do {
@@ -401,18 +400,18 @@ public class jogo {
 
             opcaoInvalida();
 
-            if (opcao.equals ("a")) {
-                acertou();
+            if (opcao.equals("a")) {
+                acertou(pontos);
                 System.out.println("Parabéns, você completou todos os desafios desta sala e encontrou um emblema!.");
 
-            } else if ((opcao.equals ("b")) || (opcao.equals ("c")) || (opcao.equals ("d"))) {
-                errou();
+            } else if ((opcao.equals("b")) || (opcao.equals("c")) || (opcao.equals("d"))) {
+                errou(pontos);
             }
-        } while (!opcao.equals ("a"));
+        } while (!opcao.equals("a"));
 
     }
 
-    public static void salaFundamentos() {
+    public static void salaFundamentos(int[]pontos) {
 
         //Questão 1   
         do {
@@ -428,12 +427,12 @@ public class jogo {
 
             opcaoInvalida();
 
-            if (opcao.equals ("a")) {
-                acertou();
-            } else if ((opcao.equals ("b")) || (opcao.equals ("c")) || (opcao.equals ("d"))) {
-                errou();
+            if (opcao.equals("a")) {
+                acertou(pontos);
+            } else if ((opcao.equals("b")) || (opcao.equals("c")) || (opcao.equals("d"))) {
+                errou(pontos);
             }
-        } while (!opcao.equals ("a"));
+        } while (!opcao.equals("a"));
 
         //Questão 2
         do {
@@ -445,12 +444,12 @@ public class jogo {
 
             opcaoInvalida();
 
-            if (opcao.equals ("c")) {
-                acertou();
-            } else if ((opcao.equals ("b")) || (opcao.equals ("d")) || (opcao.equals ("a"))) {
-                errou();
+            if (opcao.equals("c")) {
+                acertou(pontos);
+            } else if ((opcao.equals("b")) || (opcao.equals("d")) || (opcao.equals("a"))) {
+                errou(pontos);
             }
-        } while (!opcao.equals ("c"));
+        } while (!opcao.equals("c"));
 
         //Questão 3
         do {
@@ -462,12 +461,12 @@ public class jogo {
 
             opcaoInvalida();
 
-            if (opcao.equals ("a")) {
-                acertou();
-            } else if ((opcao.equals ("b")) || (opcao.equals ("c")) || (opcao.equals ("d"))) {
-                errou();
+            if (opcao.equals("a")) {
+                acertou(pontos);
+            } else if ((opcao.equals("b")) || (opcao.equals("c")) || (opcao.equals("d"))) {
+                errou(pontos);
             }
-        } while (!opcao.equals ("a"));
+        } while (!opcao.equals("a"));
 
         //Questão 4
         do {
@@ -479,12 +478,12 @@ public class jogo {
 
             opcaoInvalida();
 
-            if (opcao.equals ("d")) {
-                acertou();
-            } else if ((opcao.equals ("b")) || (opcao.equals ("c")) || (opcao.equals ("a"))) {
-                errou();
+            if (opcao.equals("d")) {
+                acertou(pontos);
+            } else if ((opcao.equals("b")) || (opcao.equals("c")) || (opcao.equals("a"))) {
+                errou(pontos);
             }
-        } while (!opcao.equals ("d"));
+        } while (!opcao.equals("d"));
 
         //Questão 5
         do {
@@ -496,17 +495,17 @@ public class jogo {
 
             opcaoInvalida();
 
-            if (opcao.equals ("a")) {
-                acertou();
+            if (opcao.equals("a")) {
+                acertou(pontos);
                 System.out.println("Parabéns, você completou todos os desafios desta sala e encontrou um emblema!.");
-            } else if ((opcao.equals ("b")) || (opcao.equals ("c")) || (opcao.equals ("d"))) {
-                errou();
+            } else if ((opcao.equals("b")) || (opcao.equals("c")) || (opcao.equals("d"))) {
+                errou(pontos);
             }
-        } while (!opcao.equals ("a"));
+        } while (!opcao.equals("a"));
 
     }
 
-    public static void salaPreCalculo() {
+    public static void salaPreCalculo(int[]pontos) {
 
         //Questão 1   
         do {
@@ -517,12 +516,12 @@ public class jogo {
             System.out.print("Escolha a alternativa correta: ");
             opcao = leitor.nextLine().toLowerCase();
             opcaoInvalida();
-            if (opcao.equals ("b")) {
-                acertou();
-            } else if ((opcao.equals ("c")) || (opcao.equals ("a")) || (opcao.equals ("d"))) {
-                errou();
+            if (opcao.equals("b")) {
+                acertou(pontos);
+            } else if ((opcao.equals("c")) || (opcao.equals("a")) || (opcao.equals("d"))) {
+                errou(pontos);
             }
-        } while (!opcao.equals ("b"));
+        } while (!opcao.equals("b"));
 
         //Questão 2
         do {
@@ -534,12 +533,12 @@ public class jogo {
 
             opcaoInvalida();
 
-            if (opcao.equals ("c")) {
-                acertou();
-            } else if ((opcao.equals ("b")) || (opcao.equals ("d")) || (opcao.equals ("a"))) {
-                errou();
+            if (opcao.equals("c")) {
+                acertou(pontos);
+            } else if ((opcao.equals("b")) || (opcao.equals("d")) || (opcao.equals("a"))) {
+                errou(pontos);
             }
-        } while (!opcao.equals ("c"));
+        } while (!opcao.equals("c"));
 
         //Questão 3
         do {
@@ -551,12 +550,12 @@ public class jogo {
 
             opcaoInvalida();
 
-            if (opcao.equals ("c")) {
-                acertou();
-            } else if ((opcao.equals ("b")) || (opcao.equals ("d")) || (opcao.equals ("a"))) {
-                errou();
+            if (opcao.equals("c")) {
+                acertou(pontos);
+            } else if ((opcao.equals("b")) || (opcao.equals("d")) || (opcao.equals("a"))) {
+                errou(pontos);
             }
-        } while (!opcao.equals ("c"));
+        } while (!opcao.equals("c"));
 
         //Questão 4
         do {
@@ -568,12 +567,12 @@ public class jogo {
 
             opcaoInvalida();
 
-            if (opcao.equals ("c")) {
-                acertou();
-            } else if ((opcao.equals ("b")) || (opcao.equals ("d")) || (opcao.equals ("a"))) {
-                errou();
+            if (opcao.equals("c")) {
+                acertou(pontos);
+            } else if ((opcao.equals("b")) || (opcao.equals("d")) || (opcao.equals("a"))) {
+                errou(pontos);
             }
-        } while (!opcao.equals ("c"));
+        } while (!opcao.equals("c"));
 
         //Questão 5
         do {
@@ -585,13 +584,13 @@ public class jogo {
 
             opcaoInvalida();
 
-            if (opcao.equals ("a")) {
-                acertou();
+            if (opcao.equals("a")) {
+                acertou(pontos);
                 System.out.println("Parabéns, você completou todos os desafios desta sala e encontrou um emblema!.");
-            } else if ((opcao.equals ("b")) || (opcao.equals ("c")) || (opcao.equals ("d"))) {
-                errou();
+            } else if ((opcao.equals("b")) || (opcao.equals("c")) || (opcao.equals("d"))) {
+                errou(pontos);
             }
-        } while (!opcao.equals ("a"));
+        } while (!opcao.equals("a"));
 
     }
 
@@ -603,7 +602,7 @@ public class jogo {
                 + "Você se aproxima do portão da entrada, encaixa os 4 emblemas nele e então a porta se abre.\n"
                 + "Retorna a sua casa e percebe que sua mãe já havia falecido durante sua ausência :´( \n"
                 + "FIM!");
-        
+
         menu();
 
     }
@@ -638,27 +637,27 @@ public class jogo {
 
 //Função responsável por subtrair dois pontos caso o jogar erra uma questão. 
 //Se o total de pontos do jogador chegou a ZERO, a função encerrará o jogo.
-    public static void errou() {
-        soma = soma - 2;
-        if (soma > 0) {
+    public static void errou(int[]pontos) {
+        pontos[0] = pontos[0] - 2;
+        if (pontos[0] > 0) {
             PulaUmaLinha();
             System.out.println("Opção incoreta! Você perdeu 2 ponto.");
-            System.out.println("Você possui " + soma + " pontos!");
+            System.out.println("Você possui " + pontos[0] + " pontos!");
             PulaUmaLinha();
         } else {
             PulaUmaLinha();
             System.out.println("Opção incoreta! Você perdeu 2 pontos.");
-            System.out.println("Seus pontos chegaram a " + soma + " você perdeu!");
+            System.out.println("Seus pontos chegaram a " + pontos[0] + " você perdeu!");
             System.exit(0);
         }
     }
 
 //Função responsável por somar um ponto caso o jogador acerte a questão
-    public static void acertou() {
+    public static void acertou(int[]pontos) {
         PulaUmaLinha();
         System.out.println("Opção correta! Parabéns você somou 1 ponto.");
-        soma = soma + 1;
-        System.out.println("Você possui " + soma + " pontos!");
+        pontos[0] = pontos[0] + 1;
+        System.out.println("Você possui " + pontos[0] + " pontos!");
         PulaUmaLinha();
     }
 
@@ -666,4 +665,11 @@ public class jogo {
     public static void PulaUmaLinha() {
         System.out.print("\n");
     }
+
+
+static int[] ponto (){
+int []ponto=new int [1];
+ponto [0]=5;
+return ponto;
+}
 }
