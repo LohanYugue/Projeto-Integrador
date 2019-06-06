@@ -49,13 +49,13 @@ public class jogo {
     }
 
     static void controladora(String opcao) {
-        int[]pontos =ponto();
+        int[] pontos = ponto();
         int[][] trancou = tranca();
         ContaHistoria(trancou, pontos, opcao);
 
     }
 
-    public static void ContaHistoria(int[][] trancou, int[]pontos, String opcao) {
+    public static void ContaHistoria(int[][] trancou, int[] pontos, String opcao) {
         System.out.print(" Bem vindo ao jogo RPG “Escola do Caos”,\n antes de mais nada, "
                 + "nos informe qual será seu nome neste jogo: ");
         String nome = leitor.nextLine().toUpperCase();
@@ -92,7 +92,7 @@ public class jogo {
 
     }
 
-    public static void validaCorredor(int[][] trancou, int chave, int[]pontos, String opcao) {
+    public static void validaCorredor(int[][] trancou, int chave, int[] pontos, String opcao) {
         System.out.print("\n(a) Esquerda\n(b) Direita\nQual você deseja seguir?");
         String escolha = leitor.nextLine().toLowerCase();
         PulaUmaLinha();
@@ -112,7 +112,7 @@ public class jogo {
         }
     }
 
-    public static void volta(int[][] trancou, int chave, int[]pontos, String opcao) {
+    public static void volta(int[][] trancou, int chave, int[] pontos, String opcao) {
         System.out.println("\nVoce voltou para a entrada principal e deve encontrar os emblemas que estão nos dois corredores");
         validaCorredor(trancou, chave, pontos, opcao);
     }
@@ -144,7 +144,7 @@ public class jogo {
         return chave;
     }
 
-    static int[][] esquerda(int[][] trancou, int chave, int[]pontos, String opcao) {
+    static int[][] esquerda(int[][] trancou, int chave, int[] pontos, String opcao) {
         String escolha;
         do {
             System.out.print("\nVocê segue em direção ao corredor da esquerda e há duas salas com a descrição.\n"
@@ -187,7 +187,7 @@ public class jogo {
         return (trancou);
     }
 
-    static int[][] direita(int[][] trancou, int chave, int[]pontos, String opcao) {
+    static int[][] direita(int[][] trancou, int chave, int[] pontos, String opcao) {
         String escolha;
         do {
             System.out.print("\nVocê segue em direção ao corredor da direita e há duas salas com a descrição.\n"
@@ -229,7 +229,7 @@ public class jogo {
         return (trancou);
     }
 
-    public static void salaConceitosComputacao(int[]pontos, String opcao) {
+    public static void salaConceitosComputacao(int[] pontos, String opcao) {
 
         //Questão 1   
         do {
@@ -320,7 +320,7 @@ public class jogo {
 
     }
 
-    public static void salaAlgoritmos(int[]pontos, String opcao) {
+    public static void salaAlgoritmos(int[] pontos, String opcao) {
 
         //Questão 1   
         do {
@@ -412,7 +412,7 @@ public class jogo {
 
     }
 
-    public static void salaFundamentos(int[]pontos, String opcao) {
+    public static void salaFundamentos(int[] pontos, String opcao) {
 
         //Questão 1   
         do {
@@ -506,7 +506,7 @@ public class jogo {
 
     }
 
-    public static void salaPreCalculo(int[]pontos,String opcao) {
+    public static void salaPreCalculo(int[] pontos, String opcao) {
 
         //Questão 1   
         do {
@@ -638,7 +638,7 @@ public class jogo {
 
 //Função responsável por subtrair dois pontos caso o jogar erra uma questão. 
 //Se o total de pontos do jogador chegou a ZERO, a função encerrará o jogo.
-    public static void errou(int[]pontos) {
+    public static void errou(int[] pontos) {
         pontos[0] = pontos[0] - 2;
         if (pontos[0] > 0) {
             PulaUmaLinha();
@@ -654,7 +654,7 @@ public class jogo {
     }
 
 //Função responsável por somar um ponto caso o jogador acerte a questão
-    public static void acertou(int[]pontos) {
+    public static void acertou(int[] pontos) {
         PulaUmaLinha();
         System.out.println("Opção correta! Parabéns você somou 1 ponto.");
         pontos[0] = pontos[0] + 1;
@@ -667,10 +667,9 @@ public class jogo {
         System.out.print("\n");
     }
 
-
-static int[] ponto (){
-int []ponto=new int [1];
-ponto [0]=5;
-return ponto;
-}
+    static int[] ponto() {
+        int[] ponto = new int[1];
+        ponto[0] = 5;
+        return ponto;
+    }
 }
