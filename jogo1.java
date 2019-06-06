@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class jogo {
 
     static Scanner leitor = new Scanner(System.in);
-    //static String opcao;
 
     public static void main(String[] args) {
         menu();
